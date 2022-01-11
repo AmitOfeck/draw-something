@@ -21,20 +21,20 @@ const createGame =  async (UserName , UserId , newGame) => {
    
 }
 
-const updateGame =  async (GameId , updatedNote) => {
+const updateGame =  async (GameMongoId , updatedGame) => {
 
     const gameToUpdate = new gameSchema({
 
-        // _id : GameId ,
-        GameId : GameId ,
-        Users : updatedNote.Users ,
-        Steps : updatedNote.Steps ,
-        Score : updatedNote.Score ,
-        StartTime : updatedNote.StartTime ,
-        EndTime : updatedNote.EndTime 
+        _id : GameMongoId  ,
+        GameId : updatedGame.GameId ,
+        Users : updatedGame.Users ,
+        Steps : updatedGame.Steps ,
+        Score : updatedGame.Score ,
+        StartTime : updatedGame.StartTime ,
+        EndTime : updatedGame.EndTime 
     })
 
-    await gameSchema.findByIdAndUpdate(GameId , gameToUpdate)
+    await gameSchema.findByIdAndUpdate(GameMongoId , gameToUpdate)
     return gameToUpdate._id
    
 }
