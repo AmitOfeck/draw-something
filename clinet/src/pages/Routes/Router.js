@@ -6,7 +6,6 @@ function Router() {
     return (
         <div>
             <Routes>
-            <Route path="/" exact element={<Play/>}/>
             <Route path="/:UserName/:UserId/:GameId" exact element={<Play/>}/>
             </Routes>
         </div>
