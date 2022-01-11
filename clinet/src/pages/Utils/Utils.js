@@ -5,6 +5,13 @@ const gameByGameId = async (UserName , UserId ,GameId) => {
     return resp.data
 }
 
+const getSnapshotLastStep = async (UserName , UserId ,GameId) => {
+    var resp = await axios.get("http://localhost:8000/games/"+UserName+"/"+UserId+"/"+GameId);
+    let lastStepIndex = resp.data[0].Steps.length-1
+    let lastStepData = resp.data[0].Steps[lastStepIndex]
+    return lastStepData
+}
+
 const newGame = async (UserName , UserId) => {
     var resp = await axios.post("http://localhost:8000/games/"+UserName+"/"+UserId)
     return resp.data
@@ -16,4 +23,4 @@ const updateGame = async (UserName , UserId , GameMongoId) => {
 }
 
 
-export default {gameByGameId , newGame , updateGame}
+export default {gameByGameId , getSnapshotLastStep , newGame , updateGame}
