@@ -9,7 +9,7 @@ function Play() {
     const params = useParams();
     const navigate = useNavigate();
 
-    const [game , setGame] = useState({
+    const [snapshot , setSnapshot] = useState({
         ActingUser: "" ,
         Canvas: "" ,
         GuessState: "" ,
@@ -21,26 +21,20 @@ function Play() {
 
     useEffect(async () => {
         var answer = await Utils.getSnapshotLastStep(params.UserName , params.UserId , params.GameId)
-        setGame(answer)
+        setSnapshot(answer)
     } ,[])
-
-    const updatePaint = (e) => {
-        // let imgURL = e.getSaveData();
-        // console.log(imgURL)
-        // let index = game.Steps.length-1
-        // let step = {...game.Steps[index]}
-        // step.Canvas = imgURL;
-        // console.log(step) 
-    }
 
     return (
         <div>
             <h2>play</h2>
             <CanvasDraw
               style={{ boxShadow: "0 13px 27px -5px rgba(50, 50, 93, 0.25),    0 8px 16px -8px rgba(0, 0, 0, 0.3)"}} 
-              onChange={(e) => updatePaint(e) } />
+              onChange={(e) => {setSnapshot({...snapshot , Canvas : e.getDataURL()})} } />
+
+             <img src={snapshot.Canvas}></img>
+
                <h2>You need to draw :</h2>
-               {/* <h4>{game.Steps[game.Steps.length-1].Word}</h4> */}
+               <h4> {snapshot.Word} </h4>
                <button type="button" class="btn btn-outline-success">Finish</button>
     
 
