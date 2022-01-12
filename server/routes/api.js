@@ -3,13 +3,6 @@ const gamesBL = require('../models/gamesBL');
 
 const router = express.Router();
 
-// //Get Game By Game Id
-// router.route('/:UserName/:UserId/:GameId').get(async (req, resp) => {
-//     const GameId = req.params.GameId;
-//     const data = await gamesBL.gameByGameId(GameId);
-//     return resp.json(data);
-// })
-
 //Get Game By Game Id
 router.route('/:GameId').get(async (req, resp) => {
     const GameId = req.params.GameId;
