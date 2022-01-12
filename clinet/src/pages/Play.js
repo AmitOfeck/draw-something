@@ -14,7 +14,7 @@ function Play() {
         ActingUser: "" ,
         Canvas: "" ,
         GuessState: "" ,
-        PaintingSt0te: "" ,
+        PaintingState: "" ,
         Points: 0 ,
         Word: "" ,
         _id: "" ,
@@ -42,7 +42,7 @@ function Play() {
 
                <h2>You need to draw :</h2>
                <h4> {snapshot.Word} </h4>
-               <button type="button" class="btn btn-outline-success">Finish</button>
+               {/* <button type="button" class="btn btn-outline-success">Finish</button> */}
                </div>
 
                <div></div>
