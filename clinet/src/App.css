@@ -43,7 +43,23 @@
   font-size:22px;
 }
 
+.gold{
+  color: gold;
+  font-weight: bold;
+  font-size:22px;
+}
+
 #navbar{
   display:grid;
-  grid-template-columns: 30% 20% 20%;
+  grid-template-columns:  15% 15% 20% 20%;
+}
+
+#drawBoard{
+  display:grid;
+  grid-template-columns:  20% 60% 20%;
+}
+
+#pic{
+  border: 3px solid #555;
+
 }
