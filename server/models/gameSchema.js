@@ -7,7 +7,7 @@ var gameSchema = new mongoose.Schema({
   Steps : [{
                Word : String ,
                Points : Number ,
-               ActingUser : String ,
+               ActingUser : Number ,
                Canvas : String ,
                PaintingState : String ,
                GuessState : String 
