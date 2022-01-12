@@ -30,7 +30,7 @@ router.route('/:UserId/:GameMongoId').put(async (req, resp) => {
 })
 
 //Update lastStep
-router.route('/:UserName/:UserId/:GameId'+'/setLastStep').put(async (req, resp) => {
+router.route('/:UserId/:GameId'+'/setLastStep').put(async (req, resp) => {
     const updatedLastStep = req.body;
     let answer = await gamesBL.gameByGameId(req.params.GameId);
     let game = answer[0]
