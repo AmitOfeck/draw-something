@@ -22,8 +22,8 @@ const updateLastStep = async (UserName , UserId , GameId , snapshot) => {
     return resp.data
 }
 
-const updateGame = async (UserName , UserId , GameMongoId) => {
-    let resp = await axios.put("http://localhost:8000/games/"+UserName+"/"+UserId+"/"+GameMongoId)
+const updateGame = async (UserId , GameMongoId) => {
+    let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameMongoId)
     return resp.data
 }
 

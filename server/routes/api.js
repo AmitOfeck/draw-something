@@ -22,7 +22,7 @@ router.route('/:UserName/:UserId').post(async (req, resp) => {
 })
 
 //Update Game
-router.route('/:UserName/:UserId/:GameMongoId').put(async (req, resp) => {
+router.route('/:UserId/:GameMongoId').put(async (req, resp) => {
     const updatedGame = req.body;
     const GameMongoId = req.params.GameMongoId;
     const answer = await gamesBL.updateGame(GameMongoId , updatedGame);
