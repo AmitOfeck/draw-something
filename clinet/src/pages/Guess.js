@@ -29,13 +29,8 @@ function Guess() {
 
     useEffect(async () => {
         const interval = setInterval(async () => {
-            console.log("calling")
             let answer = await Utils.getSnapshotLastStep(params.GameId)
-            if(answer.Canvas !== snapshot.Canvas)
-            {
-                console.log("update canvas")
-                setSnapshot(answer)
-            }       
+                setSnapshot(answer)    
         } , 5000);
         return () => clearInterval(interval);
     },[])

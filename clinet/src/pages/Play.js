@@ -26,8 +26,8 @@ function Play() {
     } ,[])
 
     useEffect(async () => {
-        var answer = await Utils.updateLastStep(params.UserId , params.GameId , snapshot)
-    } ,[snapshot.Canvas])
+        await Utils.updateLastStep(params.UserId , params.GameId , snapshot)
+    } ,[snapshot])
 
     return (
         <div>
