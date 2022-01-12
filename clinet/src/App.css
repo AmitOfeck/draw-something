@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.white{
+  color: white;
+  font-weight: bold;
+  font-size:22px;
+}
+
+#navbar{
+  display:grid;
+  grid-template-columns: 30% 20% 20%;
+}
