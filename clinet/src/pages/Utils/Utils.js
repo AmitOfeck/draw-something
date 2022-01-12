@@ -12,8 +12,8 @@ const getSnapshotLastStep = async (GameId) => {
     return lastStepData
 }
 
-const newGame = async (UserName , UserId) => {
-    let resp = await axios.post("http://localhost:8000/games/"+UserName+"/"+UserId)
+const newGame = async (UserId) => {
+    let resp = await axios.post("http://localhost:8000/games/"+UserId)
     return resp.data
 }
 
