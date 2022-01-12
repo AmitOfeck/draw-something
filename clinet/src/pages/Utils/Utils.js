@@ -39,10 +39,9 @@ const setNextTurn = async (UserId , GameId , word) => {
         Word : word.word
     }
     game.Steps.push(newStep)
-    console.log(game)
     
-    // let resp = await axios.put("http://localhost:8000/games/nextTurn/"+UserId+"/"+GameId , word)
-    // return resp.data
+    let resp2 = await axios.put("http://localhost:8000/games/"+UserId+"/"+game._id , game)
+    return resp2.data
 }
 
 
