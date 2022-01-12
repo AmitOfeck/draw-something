@@ -9,9 +9,9 @@ function Router() {
     return (
         <div>
             <Routes>
-            <Route path="/:UserName/:UserId/:GameId/Play" exact element={<Play/>}/>
-            <Route path="/:UserName/:UserId/:GameId/Guess" exact element={<Guess/>}/>
-            <Route path="/:UserName/:UserId/:GameId/ChooseWords" exact element={<ChooseWords/>}/>
+            <Route path="/:UserId/:GameId/Play" exact element={<Play/>}/>
+            <Route path="/:UserId/:GameId/Guess" exact element={<Guess/>}/>
+            <Route path="/:UserId/:GameId/ChooseWords" exact element={<ChooseWords/>}/>
             </Routes>
         </div>
     );
