@@ -12,8 +12,7 @@ const createGame =  async (UserName , UserId , newGame) => {
         Users : [{UserName : UserName , UserId : UserId}] ,
         Steps : newGame.Steps ,
         Score : newGame.Score ,
-        StartTime : newGame.StartTime ,
-        EndTime : newGame.EndTime 
+        Timer : newGame.Timer
     })
 
     await gameToAdd.save()
@@ -30,8 +29,7 @@ const updateGame =  async (GameMongoId , updatedGame) => {
         Users : updatedGame.Users ,
         Steps : updatedGame.Steps ,
         Score : updatedGame.Score ,
-        StartTime : updatedGame.StartTime ,
-        EndTime : updatedGame.EndTime 
+        Timer : updatedGame.Timer
     })
 
     await gameSchema.findByIdAndUpdate(GameMongoId , gameToUpdate)

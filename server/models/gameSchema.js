@@ -13,8 +13,7 @@ var gameSchema = new mongoose.Schema({
                GuessState : String 
           }] ,
   Score : Number ,
-  StartTime : Date ,
-  EndTime : Date 
+  Timer : Number
   
 } , {versionKey: false})
 
