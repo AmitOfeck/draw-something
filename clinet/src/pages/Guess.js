@@ -41,12 +41,18 @@ function Guess() {
         }
     } ,[input])
 
+    let mark = ""
+    for(let i = 0; i <snapshot.Word.length; i++){
+        mark = mark + "_       "
+    }
 
     return (
         <div>
             <h2>Guess</h2>
             <img src={snapshot.Canvas} id="pic"></img>
-            <h4>Length of the word  : {snapshot.Word.length}</h4>
+            <br/> <br/>
+            {/* <h4>Length of the word  : {snapshot.Word.length}</h4> */}
+            <h1>{mark}</h1>
             <input type="text" className="form-control" placeholder="Guess the word" aria-describedby="basic-addon1"
             onChange={(e) => setInput(e.target.value)}/>
             
