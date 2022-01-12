@@ -43,21 +43,21 @@ function TurnRouter() {
     return (  
     
         <div>
-            <nav class="navbar navbar-dark bg-dark"  id="navbar">
-               <div class="white">
-               <p class="navbar-brand" class="white">Timer</p>
+            <nav className="navbar navbar-dark bg-dark"  id="navbar">
+               <div className="white">
+               <p className="navbar-brand" className="white">Timer</p>
                 </div>
 
-                <div class="white">
-               <p class="navbar-brand" class="gold"> {game.Score} Points</p>
+                <div className="white">
+               <p className="navbar-brand" className="gold"> {game.Score} Points</p>
                 </div>
 
-               <div class="container-fluid">
-               <p class="navbar-brand" class="white">Draw & Guess</p>
+               <div className="container-fluid">
+               <p className="navbar-brand" className="white">Draw & Guess</p>
                </div>
 
                <div>
-               <button type="button" class="btn btn-danger">End Game</button> 
+               <button type="button" className="btn btn-danger">End Game</button> 
                </div>
             </nav>
 

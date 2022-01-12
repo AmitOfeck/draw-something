@@ -17,18 +17,22 @@ function ChooseWords(props) {
         setWords(randomWords.randomWordsFunction())
     } ,[])
 
+    function moveToDraw(word) {
+      console.log(word)
+    }
+
 
     return (
         <div>
             <h2>Choose Words</h2>
             
-            <div class="input-group mb-3">
-                <button class="btn btn-success" type="button">{words.Easy}</button>
-                <button class="btn btn-warning" type="button">{words.Medium}</button>
-                <button class="btn btn-danger" type="button">{words.Hard}</button>
+            <div className="input-group mb-3">
+                <button className="btn btn-success" value={words.Easy} type="button" onClick={(e) => moveToDraw(e.target.value) }>{words.Easy}</button>
+                <button className="btn btn-warning" value={words.Medium} type="button" onClick={(e) => moveToDraw(e.target.value) }>{words.Medium}</button>
+                <button className="btn btn-danger"  value={words.Hard} type="button" onClick={(e) => moveToDraw(e.target.value) }>{words.Hard}</button>
            </div>
 
-           <button type="button" class="btn btn-outline-primary" onClick={() => setWords(randomWords.randomWordsFunction()) }>Reset Words</button>
+           <button type="button" className="btn btn-outline-primary" onClick={() => setWords(randomWords.randomWordsFunction()) }>Reset Words</button>
 
         </div>
     );
