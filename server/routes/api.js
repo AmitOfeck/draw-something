@@ -43,6 +43,16 @@ router.route('/:UserName/:UserId/:GameId'+'/setLastStep').put(async (req, resp) 
     return resp.json(answer2);
 })
 
+
+//Set Next Turn
+router.route('/nextTurn/:UserId/:GameId').put(async (req, resp) => {
+    console.log("api")
+    // const updatedGame = req.body;
+    // const GameMongoId = req.params.GameMongoId;
+    // const answer = await gamesBL.updateGame(GameMongoId , updatedGame);
+    // return resp.json(answer);
+})
+
 module.exports = router;
 
 

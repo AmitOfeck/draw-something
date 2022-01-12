@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate , useParams } from 'react-router-dom'
-var randomWords = require('../API/randomWords'); 
+import Utils from '../pages/Utils/Utils'
+import '../App.css'
+let randomWords = require('../API/randomWords'); 
+
+
 
 
 function ChooseWords(props) {
@@ -18,19 +22,24 @@ function ChooseWords(props) {
     } ,[])
 
     function moveToDraw(word) {
-      console.log(word)
+      let obj = {word : word.innerText , points : word.value}
+      let answer = Utils.setNextTurn(params.UserId , params.GameId  , obj)
     }
 
 
     return (
         <div>
             <h2>Choose Words</h2>
-            
-            <div className="input-group mb-3">
-                <button className="btn btn-success" value={words.Easy} type="button" onClick={(e) => moveToDraw(e.target.value) }>{words.Easy}</button>
-                <button className="btn btn-warning" value={words.Medium} type="button" onClick={(e) => moveToDraw(e.target.value) }>{words.Medium}</button>
-                <button className="btn btn-danger"  value={words.Hard} type="button" onClick={(e) => moveToDraw(e.target.value) }>{words.Hard}</button>
-           </div>
+
+            <div id="drawBoard">
+                <div></div>
+                <div className="input-group mb-3">
+                   <button className="btn btn-success" value='1' type="button" onClick={(e) => moveToDraw(e.target) }>{words.Easy}</button>
+                   <button className="btn btn-warning" value='3' type="button" onClick={(e) => moveToDraw(e.target) }>{words.Medium}</button>
+                   <button className="btn btn-danger"  value='5' type="button" onClick={(e) => moveToDraw(e.target) }>{words.Hard}</button>
+                </div>
+                <div></div>
+            </div>
 
            <button type="button" className="btn btn-outline-primary" onClick={() => setWords(randomWords.randomWordsFunction()) }>Reset Words</button>
 
