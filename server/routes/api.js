@@ -37,16 +37,28 @@ router.route('/:UserId/:GameMongoId').put(async (req, resp) => {
 })
 
 //Update lastStep
-router.route('/:UserId/:GameId'+'/setLastStep').put(async (req, resp) => {
+// router.route('/:UserId/:GameId'+'/updateLastStep').put(async (req, resp) => {
+
+//     console.log(req.body)
+
+//     // let answer = await gamesBL.gameByGameId(req.params.GameId);
+//     // let game = answer[0]
+//     // let steps = [...game.Steps];
+//     // let indexLastStep = steps.length - 1;
+//     // steps[indexLastStep] = updatedLastStep;
+//     // game.Steps = steps;
+//     // const GameMongoId = game._id;
+
+
+//     // const answer2 = await gamesBL.updateGame(GameMongoId , game);
+//     // return resp.json(answer2);
+// })
+
+// set Next Turn
+router.route('/:UserId/:GameId'+'/setNextTurn').put(async (req, resp) => {
     const updatedLastStep = req.body;
-    let answer = await gamesBL.gameByGameId(req.params.GameId);
-    let game = answer[0]
-    let steps = [...game.Steps];
-    let indexLastStep = steps.length - 1;
-    steps[indexLastStep] = updatedLastStep;
-    game.Steps = steps;
-    const GameMongoId = game._id;
-    const answer2 = await gamesBL.updateGame(GameMongoId , game);
+    const GameMongoId = updatedLastStep._id;
+    const answer2 = await gamesBL.updateGame(GameMongoId , updatedLastStep);
     return resp.json(answer2);
 })
 

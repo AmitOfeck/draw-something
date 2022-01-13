@@ -24,6 +24,7 @@ function ChooseWords(props) {
     function moveToDraw(word) {
       let obj = {word : word.innerText , points : word.value}
       let answer = Utils.setNextTurn(params.UserId , params.GameId  , obj)
+      navigate('/'+params.UserId+'/'+params.GameId+'/Play')
     }
 
 
