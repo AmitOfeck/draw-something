@@ -5,11 +5,11 @@ const gameByGameId =  async (GameId) => {
     return await gameSchema.find({GameId: GameId})
 }
 
-const createGame =  async (UserId , newGame) => {
+const createGame =  async (newGame) => {
 
     const gameToAdd = new gameSchema({
         GameId : newGame.GameId ,
-        Users : [{UserName : "" , UserId : UserId}] ,
+        Users : newGame.Users ,
         Steps : newGame.Steps ,
         Score : newGame.Score ,
         Timer : newGame.Timer

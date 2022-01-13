@@ -11,11 +11,19 @@ router.route('/:GameId').get(async (req, resp) => {
 })
 
 //Create Game
-router.route('/:UserId').post(async (req, resp) => {
+router.route('/:UserId/:GameId').post(async (req, resp) => {
 
     const UserId = req.params.UserId;
-    const newGame = req.body;
-    const answer = await gamesBL.createGame(UserId , newGame);
+    const GameId = req.params.GameId;
+    // const newGame = req.body;
+    const newGame = {
+        GameId : GameId ,
+        Users : [{UserName : "" , UserId : UserId}] ,
+        Steps : [] ,
+        Score : 0 ,
+        Timer : 0
+    }
+    const answer = await gamesBL.createGame(newGame);
 
     return resp.json(answer);
 })
