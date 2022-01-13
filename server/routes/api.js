@@ -40,15 +40,55 @@ router.route('/:UserId/:GameMongoId').put(async (req, resp) => {
 router.route('/:UserId/:GameId'+'/setLastStep').put(async (req, resp) => {
     const updatedLastStep = req.body;
     let answer = await gamesBL.gameByGameId(req.params.GameId);
-    let game = answer[0]
-    let steps = [...game.Steps];
-    let indexLastStep = steps.length - 1;
-    steps[indexLastStep] = updatedLastStep;
+    let game = answer[0];
+    let steps = game.Steps;
+    let lastStep = steps[steps.length - 1];
+    lastStep.Canvas = updatedLastStep.Canvas;
+    lastStep.PaintingState = updatedLastStep.PaintingState;
+    lastStep.GuessState = updatedLastStep.GuessState;
+    // maybe should be removed
+    steps[steps.length-1] = lastStep;
+    // steps[indexLastStep] = updatedLastStep;
     game.Steps = steps;
     const GameMongoId = game._id;
     const answer2 = await gamesBL.updateGame(GameMongoId , game);
     return resp.json(answer2);
 })
+
+// set canvas
+router.route('/:UserId/:GameId'+'/setCanvas').put(async (req, resp) => {
+    const updatedLastStep = req.body;
+    let answer = await gamesBL.gameByGameId(req.params.GameId);
+    let game = answer[0];
+    let steps = game.Steps;
+    let lastStep = steps[steps.length - 1];
+    lastStep.Canvas = updatedLastStep.Canvas;
+    // maybe should be removed
+    steps[steps.length-1] = lastStep;
+    // steps[indexLastStep] = updatedLastStep;
+    game.Steps = steps;
+    const GameMongoId = game._id;
+    const answer2 = await gamesBL.updateGame(GameMongoId , game);
+    return resp.json(answer2);
+})
+
+// set Guessing State
+router.route('/:UserId/:GameId'+'/Guess').put(async (req, resp) => {
+    const updatedLastStep = req.body;
+    let answer = await gamesBL.gameByGameId(req.params.GameId);
+    let game = answer[0];
+    let steps = game.Steps;
+    let lastStep = steps[steps.length - 1];
+    lastStep.GuessState = updatedLastStep.GuessState;
+    // maybe should be removed
+    steps[steps.length-1] = lastStep;
+    // steps[indexLastStep] = updatedLastStep;
+    game.Steps = steps;
+    const GameMongoId = game._id;
+    const answer2 = await gamesBL.updateGame(GameMongoId , game);
+    return resp.json(answer2);
+})
+
 
 
 module.exports = router;

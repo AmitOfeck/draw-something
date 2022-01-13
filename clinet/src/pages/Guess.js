@@ -36,8 +36,9 @@ function Guess() {
     },[])
 
     useEffect(async () => {
-        if(snapshot.Word.toUpperCase() == input.toUpperCase()){
+        if(snapshot.Word !== "" && snapshot.Word !== null && snapshot.Word.toUpperCase() === input.toUpperCase()){
             await Utils.updateLastStep(params.UserId , params.GameId , {...snapshot , GuessState : "Done"})
+            navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
         }
     } ,[input])
 
@@ -58,10 +59,6 @@ function Guess() {
         </div>
     }
 
-    if(snapshot.PaintingState == "Done" && snapshot.GuessState == "Done")
-    {
-        navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
-    }
 
     return (
         <div>

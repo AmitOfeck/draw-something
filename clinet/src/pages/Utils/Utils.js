@@ -22,11 +22,6 @@ const updateLastStep = async (UserId , GameId , snapshot) => {
     return resp.data
 }
 
-const updateGame = async (UserId , GameMongoId) => {
-    let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameMongoId)
-    return resp.data
-}
-
 const setNextTurn = async (UserId , GameId , word) => {
     let resp = await axios.get("http://localhost:8000/games/"+GameId);
     let game = {...resp.data[0]}
@@ -39,10 +34,13 @@ const setNextTurn = async (UserId , GameId , word) => {
         Word : word.word
     }
     game.Steps.push(newStep)
+
+    console.log(newStep)
+    console.log(game)
     
     let resp2 = await axios.put("http://localhost:8000/games/"+UserId+"/"+game._id , game)
     return resp2.data
 }
 
 
-export default {gameByGameId , getSnapshotLastStep , newGame , updateLastStep , updateGame , setNextTurn}
+export default {gameByGameId , getSnapshotLastStep , newGame , updateLastStep , setNextTurn}

@@ -9,9 +9,18 @@ function WaitingRoom() {
     const params = useParams();
     const navigate = useNavigate();
 
-    const goToDrawComp = () => {
-       navigate('/'+params.UserId+'/'+params.GameId+'/Play')
-    }
+    useEffect(async () => {
+        const interval = setInterval(async () => {
+            let answer = await Utils.getSnapshotLastStep(params.GameId)
+            console.log(params.UserId , answer)
+            if(answer.PaintingState === "In_Progress" && answer.ActingUser !== params.UserId)
+            {
+                navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
+            }  
+        } , 5000);
+        return () => clearInterval(interval);
+    },[])
+
 
 
     return (
@@ -24,7 +33,6 @@ function WaitingRoom() {
             </div>
 
             <br/><br/>
-            <button type="button" className="btn btn-outline-success" onClick={() => goToDrawComp()}>Change Link</button>
 
         </div>
     );

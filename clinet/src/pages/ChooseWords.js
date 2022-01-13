@@ -21,9 +21,10 @@ function ChooseWords(props) {
         setWords(randomWords.randomWordsFunction())
     } ,[])
 
-    function moveToDraw(word) {
+    async function moveToDraw(word) {
       let obj = {word : word.innerText , points : word.value}
-      let answer = Utils.setNextTurn(params.UserId , params.GameId  , obj)
+      let answer = await Utils.setNextTurn(params.UserId , params.GameId  , obj)
+      navigate('/'+params.UserId+'/'+params.GameId+'/Play')
     }
 
 
