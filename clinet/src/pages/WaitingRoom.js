@@ -9,8 +9,26 @@ function WaitingRoom() {
     const params = useParams();
     const navigate = useNavigate();
 
-    const goToDrawComp = () => {
-       navigate('/'+params.UserId+'/'+params.GameId+'/Play')
+    const [snapshot , setSnapshot] = useState({
+        ActingUser: "" ,
+        Canvas: "" ,
+        GuessState: "" ,
+        PaintingState: "" ,
+        Points: 0 ,
+        Word: "" ,
+        _id: "" ,
+    })
+
+    useEffect(async () => {
+        const interval = setInterval(async () => {
+            let answer = await Utils.getSnapshotLastStep(params.GameId)
+                setSnapshot(answer)    
+        } , 5000);
+        return () => clearInterval(interval);
+    },[])
+
+    if(snapshot.GuessState == "In_Progress"){
+        navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
     }
 
 
@@ -23,8 +41,6 @@ function WaitingRoom() {
             <span className="visually-hidden">Loading...</span>
             </div>
 
-            <br/><br/>
-            <button type="button" className="btn btn-outline-success" onClick={() => goToDrawComp()}>Change Link</button>
 
         </div>
     );

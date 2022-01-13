@@ -21,29 +21,30 @@ function Play() {
     })
 
     useEffect(async () => {
-        let answer = await Utils.getSnapshotLastStep(params.GameId)
-        setSnapshot(answer)
+        // let answer = await Utils.getSnapshotLastStep(params.GameId)
+        // setSnapshot(answer)
     } ,[])
 
     useEffect(async () => {
-        const interval = setInterval(async () => {
-            let answer = await Utils.getSnapshotLastStep(params.GameId)
-                setSnapshot(answer)    
-        } , 5000);
-        return () => clearInterval(interval);
+
+        // const interval = setInterval(async () => {
+        //     let answer = await Utils.getSnapshotLastStep(params.GameId)
+        //         setSnapshot(answer)    
+        // } , 5000);
+
+        // return () => clearInterval(interval);
     },[])
 
     useEffect(async () => {
         await Utils.updateLastStep(params.UserId , params.GameId , snapshot)
+        if(snapshot.PaintingState == "Done" && snapshot.GuessState == "Done")
+        {
+            navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
+        }
     } ,[snapshot])
 
     const finish = async () => {
         await Utils.updateLastStep(params.UserId , params.GameId , {...snapshot , PaintingState : "Done"})
-    }
-
-    if(snapshot.PaintingState == "Done" && snapshot.GuessState == "Done")
-    {
-        navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
     }
 
     return (
@@ -55,7 +56,9 @@ function Play() {
                 <div>
                 <CanvasDraw
                 style={{ boxShadow: "0 13px 27px -5px rgba(50, 50, 93, 0.25),    0 8px 16px -8px rgba(0, 0, 0, 0.3)"}} 
-                onChange={(e) => {setSnapshot({...snapshot , Canvas : e.getDataURL()})} } />
+                onChange={(e) => {
+                    setSnapshot({...snapshot , Canvas : e.getDataURL()});
+                } } />
 
                <h2>You need to draw :</h2>
                <h4> {snapshot.Word} </h4>
