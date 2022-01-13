@@ -41,6 +41,11 @@ function Play() {
         await Utils.updateLastStep(params.UserId , params.GameId , {...snapshot , PaintingState : "Done"})
     }
 
+    if(snapshot.PaintingState == "Done" && snapshot.GuessState == "Done")
+    {
+        navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
+    }
+
     return (
         <div>
             <h2>Draw</h2>

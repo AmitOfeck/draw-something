@@ -58,6 +58,11 @@ function Guess() {
         </div>
     }
 
+    if(snapshot.PaintingState == "Done" && snapshot.GuessState == "Done")
+    {
+        navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
+    }
+
     return (
         <div>
             <h2>Guess</h2>
