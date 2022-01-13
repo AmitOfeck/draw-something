@@ -51,10 +51,10 @@ function Guess() {
     let frame = "unfinishedPaint";
     if(snapshot.PaintingState == "Done"){
         frame = "finishedPaint";
-        GuessInput = <div>
+        GuessInput = <div id="blue">
             <h1>{mark}</h1>
             <input type="text" className="form-control" placeholder="Guess the word" aria-describedby="basic-addon1"
-            onChange={(e) => setInput(e.target.value)}/>
+            onChange={(e) => setInput(e.target.value)} />
         </div>
     }
 
