@@ -34,11 +34,11 @@ function Play() {
     },[])
 
     useEffect(async () => {
-        await Utils.updateLastStep(params.UserId , params.GameId , snapshot)
+        await Utils.updateCanvas(params.UserId , params.GameId , {Canvas : snapshot.Canvas})
     } ,[snapshot])
 
     const finish = async () => {
-        await Utils.updateLastStep(params.UserId , params.GameId , {...snapshot , PaintingState : "Done"})
+        await Utils.updatePaintState(params.UserId , params.GameId , {PaintingState : "Done"})
     }
 
     if(snapshot.PaintingState === "Done" && snapshot.GuessState === "Done")

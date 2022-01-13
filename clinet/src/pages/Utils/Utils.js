@@ -17,8 +17,23 @@ const newGame = async (UserId) => {
     return resp.data
 }
 
-const updateLastStep = async (UserId , GameId , snapshot) => {
-    let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameId+"/setLastStep" , snapshot)
+// const updateLastStep = async (UserId , GameId , snapshot) => {
+//     let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameId+"/setLastStep" , snapshot)
+//     return resp.data
+// }
+
+const updateCanvas = async (UserId , GameId , snapshot) => {
+    let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameId+"/setCanvas" , snapshot)
+    return resp.data
+}
+
+const updateGuess = async (UserId , GameId , snapshot) => {
+    let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameId+"/Guess" , snapshot)
+    return resp.data
+}
+
+const updatePaintState = async (UserId , GameId , snapshot) => {
+    let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameId+"/PaintState" , snapshot)
     return resp.data
 }
 
@@ -43,4 +58,4 @@ const setNextTurn = async (UserId , GameId , word) => {
 }
 
 
-export default {gameByGameId , getSnapshotLastStep , newGame , updateLastStep , setNextTurn}
+export default {gameByGameId , getSnapshotLastStep , newGame , setNextTurn ,updateCanvas ,updateGuess ,updatePaintState}

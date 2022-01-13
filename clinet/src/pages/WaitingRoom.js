@@ -13,9 +13,20 @@ function WaitingRoom() {
         const interval = setInterval(async () => {
             let answer = await Utils.getSnapshotLastStep(params.GameId)
             console.log(params.UserId , answer)
-            if(answer.PaintingState === "In_Progress" && answer.ActingUser !== params.UserId)
+            if(answer.PaintingState === "In_Progress")
             {
-                navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
+                if(answer.ActingUser === params.UserId){
+                    navigate('/'+params.UserId+'/'+params.GameId+'/Play')
+                }
+                else if(answer.ActingUser !== params.UserId){
+                    console.log("moving to guess")
+                    console.log(answer)
+                    // navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
+                }
+                else{
+                    console.log("else")
+                }
+
             }  
         } , 5000);
         return () => clearInterval(interval);
