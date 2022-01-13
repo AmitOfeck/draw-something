@@ -29,6 +29,10 @@ function Play() {
         await Utils.updateLastStep(params.UserId , params.GameId , snapshot)
     } ,[snapshot])
 
+    const finish = async () => {
+        await Utils.updateLastStep(params.UserId , params.GameId , {...snapshot , PaintingState : "Done"})
+    }
+
     return (
         <div>
             <h2>Draw</h2>
@@ -42,7 +46,7 @@ function Play() {
 
                <h2>You need to draw :</h2>
                <h4> {snapshot.Word} </h4>
-               {/* <button type="button" class="btn btn-outline-success">Finish</button> */}
+               <button type="button" className="btn btn-outline-success" onClick={() => finish()}>Finish</button>
                </div>
 
                <div></div>
