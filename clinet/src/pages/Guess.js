@@ -37,7 +37,7 @@ function Guess() {
 
     useEffect(async () => {
         if(snapshot.Word.toUpperCase() == input.toUpperCase()){
-            console.log("yes")
+            await Utils.updateLastStep(params.UserId , params.GameId , {...snapshot , GuessState : "Done"})
         }
     } ,[input])
 

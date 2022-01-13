@@ -26,6 +26,14 @@ function Play() {
     } ,[])
 
     useEffect(async () => {
+        const interval = setInterval(async () => {
+            let answer = await Utils.getSnapshotLastStep(params.GameId)
+                setSnapshot(answer)    
+        } , 5000);
+        return () => clearInterval(interval);
+    },[])
+
+    useEffect(async () => {
         await Utils.updateLastStep(params.UserId , params.GameId , snapshot)
     } ,[snapshot])
 
