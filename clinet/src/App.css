@@ -59,7 +59,10 @@
   grid-template-columns:  20% 60% 20%;
 }
 
-#pic{
-  border: 3px solid #555;
+#unfinishedPaint{
+  border: 3px solid rgb(173, 69, 69);
+}
 
+#finishedPaint{
+  border: 3px solid rgb(98, 172, 83);
 }

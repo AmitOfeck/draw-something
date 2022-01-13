@@ -14,7 +14,7 @@ function Guess() {
         ActingUser: "" ,
         Canvas: "" ,
         GuessState: "" ,
-        PaintingSt0te: "" ,
+        PaintingState: "" ,
         Points: 0 ,
         Word: "" ,
         _id: "" ,
@@ -46,15 +46,25 @@ function Guess() {
         mark = mark + "_       "
     }
 
-    return (
-        <div>
-            <h2>Guess</h2>
-            <img src={snapshot.Canvas} id="pic"></img>
-            <br/> <br/>
-            {/* <h4>Length of the word  : {snapshot.Word.length}</h4> */}
+    let GuessInput = <div></div>
+
+    let frame = "unfinishedPaint";
+    if(snapshot.PaintingState == "Done"){
+        frame = "finishedPaint";
+        GuessInput = <div>
             <h1>{mark}</h1>
             <input type="text" className="form-control" placeholder="Guess the word" aria-describedby="basic-addon1"
             onChange={(e) => setInput(e.target.value)}/>
+        </div>
+    }
+
+    return (
+        <div>
+            <h2>Guess</h2>
+            <img src={snapshot.Canvas} id={frame}></img>
+            <br/> <br/>
+            {/* <h4>Length of the word  : {snapshot.Word.length}</h4> */}
+            {GuessInput}
             
         </div>
     );
