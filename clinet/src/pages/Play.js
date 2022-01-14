@@ -21,16 +21,16 @@ function Play() {
     })
 
     useEffect(async () => {
-        let answer = await Utils.getSnapshotLastStep(params.GameId)
-        setSnapshot(answer)
+        // let answer = await Utils.getSnapshotLastStep(params.GameId)
+        // setSnapshot(answer)
     } ,[])
 
     useEffect(async () => {
-        const interval = setInterval(async () => {
-            let answer = await Utils.getSnapshotLastStep(params.GameId)
-                setSnapshot(answer)    
-        } , 5000);
-        return () => clearInterval(interval);
+        // const interval = setInterval(async () => {
+        //     let answer = await Utils.getSnapshotLastStep(params.GameId)
+        //         setSnapshot(answer)    
+        // } , 5000);
+        // return () => clearInterval(interval);
     },[])
 
     useEffect(async () => {
@@ -43,7 +43,7 @@ function Play() {
 
     if(snapshot.PaintingState === "Done" && snapshot.GuessState === "Done")
     {
-        navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
+        // navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
     }
 
     return (

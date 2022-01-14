@@ -28,7 +28,7 @@ const CreateNewStep =  async (newStep , Game , MongoId) => { //new
     return gameToAdd._id
 }
 
-const UpdateCanvas =  async (canvas , Game) => { //new
+const UpdateCanvas =  async (canvas , Game , MongoId) => { //new
 
     Game.Step.Canvas = canvas; 
 
@@ -38,9 +38,10 @@ const UpdateCanvas =  async (canvas , Game) => { //new
         Steps : Game.Steps ,
         Step : Game.Step ,
         Score : Game.Score ,
-        Timer : Game.Timer
+        Timer : Game.Timer ,
+        _id : MongoId
     })
-    console.log(gameToAdd)
+
     await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
     return gameToAdd._id
 }

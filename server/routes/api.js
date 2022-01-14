@@ -22,10 +22,11 @@ router.route('/:UserId/:GameId').put(async (req, resp) => {
 
 //Update Canvas - new
 router.route('/:UserId/:GameId/setCanvas').put(async (req, resp) => {
-    const canvas = req.body.Canvas; // string of the canvas
+    const canvas = req.body.Canvas; // string of the canvas from json
     const GameId = req.params.GameId;
     const Game = await gamesBL.gameByGameId(GameId); // the old game
-    const answer = await gamesBL.UpdateCanvas(canvas , Game[0]);
+    const MongoId = Game[0]._id
+    const answer = await gamesBL.UpdateCanvas(canvas , Game[0] , MongoId);
     return resp.json(answer);
 })
 
@@ -79,22 +80,22 @@ router.route('/:UserId/:GameId').post(async (req, resp) => {
 //     return resp.json(answer2);
 // })
 
-// set canvas
-router.route('/:UserId/:GameId'+'/setCanvas').put(async (req, resp) => {
-    const updatedLastStep = req.body;
-    let answer = await gamesBL.gameByGameId(req.params.GameId);
-    let game = answer[0];
-    let steps = game.Steps;
-    let lastStep = steps[steps.length - 1];
-    lastStep.Canvas = updatedLastStep.Canvas;
-    // maybe should be removed
-    steps[steps.length-1] = lastStep;
-    // steps[indexLastStep] = updatedLastStep;
-    game.Steps = steps;
-    const GameMongoId = game._id;
-    const answer2 = await gamesBL.updateGame(GameMongoId , game);
-    return resp.json(answer2);
-})
+// // set canvas
+// router.route('/:UserId/:GameId'+'/setCanvas').put(async (req, resp) => {
+//     const updatedLastStep = req.body;
+//     let answer = await gamesBL.gameByGameId(req.params.GameId);
+//     let game = answer[0];
+//     let steps = game.Steps;
+//     let lastStep = steps[steps.length - 1];
+//     lastStep.Canvas = updatedLastStep.Canvas;
+//     // maybe should be removed
+//     steps[steps.length-1] = lastStep;
+//     // steps[indexLastStep] = updatedLastStep;
+//     game.Steps = steps;
+//     const GameMongoId = game._id;
+//     const answer2 = await gamesBL.updateGame(GameMongoId , game);
+//     return resp.json(answer2);
+// })
 
 // set Guessing State
 router.route('/:UserId/:GameId'+'/Guess').put(async (req, resp) => {
