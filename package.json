@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1" ,
+    "start" : "node index.js" ,
+    "deploy" : "npm install && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^11.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.6",
+    "path": "^0.12.7",
+    "random-number": "^0.0.9",
+    "random-words": "^1.1.1"
+  }
+}
