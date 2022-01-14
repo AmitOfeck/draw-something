@@ -40,14 +40,10 @@ const getLastStep = async (GameId) => {
     return resp.data
 }
 
-
-
-
 const newGame = async (UserId) => {
     let resp = await axios.post("http://localhost:8000/games/"+UserId)
     return resp.data
 }
-
 
 
 export default {gameByGameId , setNextStep , updateCanvas , updatePaintState , updateGuess , getLastStep}
