@@ -64,7 +64,6 @@ router.route('/:GameId/GetLastStep').get(async (req, resp) => {
     return resp.json(data[0].Step);
 })
 
-
 //Create Game
 router.route('/CreateGame').post(async (req, resp) => {
 
