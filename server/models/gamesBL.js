@@ -88,14 +88,13 @@ const createGame =  async (newGame) => {
     const gameToAdd = new gameSchema({
         GameId : newGame.GameId ,
         Users : newGame.Users ,
-        Steps : newGame.Steps ,
         Step : newGame.Step ,
         Score : newGame.Score ,
         Timer : newGame.Timer
     })
 
     await gameToAdd.save()
-    return gameToAdd._id
+    return gameToAdd.GameId
    
 }
 

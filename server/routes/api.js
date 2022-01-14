@@ -1,7 +1,14 @@
 const express = require('express');
 const gamesBL = require('../models/gamesBL');
-
 const router = express.Router();
+
+let randomNumbers = require('random-number');
+let gen = randomNumbers.generator({
+    min:  1000
+  , max:  1000000
+  , integer: true
+  })
+
 
 //Get Game By Game Id
 router.route('/:GameId').get(async (req, resp) => {
@@ -59,20 +66,26 @@ router.route('/:GameId/GetLastStep').get(async (req, resp) => {
 
 
 //Create Game
-router.route('/:UserId/:GameId').post(async (req, resp) => {
+router.route('/CreateGame').post(async (req, resp) => {
 
-    const UserId = req.params.UserId;
-    const GameId = req.params.GameId;
-    // const newGame = req.body;
+    const UserName = req.body.UserName // {UserName : name}
+    const UserId = gen()
+    
     const newGame = {
-        GameId : GameId ,
-        Users : [{UserName : "" , UserId : UserId}] ,
-        Steps : [] ,
+        GameId : gen() ,
+        Users : [{UserName : UserName , UserId : UserId}] ,
+        Step : {
+            Word : "",
+            Points : 0,
+            ActingUser : UserId,
+            Canvas : "",
+            PaintingState : "In_Progress",
+            GuessState : "In_Progress"
+        } ,
         Score : 0 ,
         Timer : 0
     }
     const answer = await gamesBL.createGame(newGame);
-
     return resp.json(answer);
 })
 
