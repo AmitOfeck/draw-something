@@ -33,7 +33,7 @@ function Guess() {
     useEffect(async () => {
         if(snapshot.Word !== "" && snapshot.Word !== null && snapshot.Word.toUpperCase() === input.toUpperCase()){
             await Utils.updateGuess(params.UserId , params.GameId , {GuessState : "Done"})
-            // navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
+            navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
         }
     } ,[input])
 

@@ -83,13 +83,6 @@ const UpdateGuessState =  async (GuessState , Game , MongoId) => { //new
 }
 
 
-
-
-
-
-
-
-
 const createGame =  async (newGame) => {
 
     const gameToAdd = new gameSchema({
@@ -106,23 +99,6 @@ const createGame =  async (newGame) => {
    
 }
 
-const updateGame =  async (GameMongoId , updatedGame) => {
-
-    const gameToUpdate = new gameSchema({
-
-        _id : GameMongoId  ,
-        GameId : updatedGame.GameId ,
-        Users : updatedGame.Users ,
-        Steps : updatedGame.Steps ,
-        Step : updatedGame.Step ,
-        Score : updatedGame.Score ,
-        Timer : updatedGame.Timer
-    })
-
-    await gameSchema.findByIdAndUpdate(GameMongoId , gameToUpdate)
-    return gameToUpdate._id
-   
-}
 
 
-module.exports = {gameByGameId , createGame , updateGame , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState};
+module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame};

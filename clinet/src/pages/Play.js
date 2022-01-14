@@ -39,7 +39,7 @@ function Play() {
 
     if(snapshot.PaintingState === "Done" && snapshot.GuessState === "Done")
     {
-        // navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
+        navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
     }
 
     return (

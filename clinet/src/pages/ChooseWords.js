@@ -24,7 +24,7 @@ function ChooseWords(props) {
     async function moveToDraw(word) {
       let obj = {word : word.innerText , points : word.value}
       let answer = await Utils.setNextStep(params.UserId , params.GameId  , obj)
-    //   navigate('/'+params.UserId+'/'+params.GameId+'/Play')
+      navigate('/'+params.UserId+'/'+params.GameId+'/Play')
     }
 
 

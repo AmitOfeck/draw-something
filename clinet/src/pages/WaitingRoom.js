@@ -11,7 +11,7 @@ function WaitingRoom() {
 
     useEffect(async () => {
         const interval = setInterval(async () => {
-            let answer = await Utils.getSnapshotLastStep(params.GameId)
+            let answer = await Utils.getLastStep(params.GameId)
             console.log(params.UserId , answer)
             if(answer.PaintingState === "In_Progress")
             {
@@ -19,9 +19,7 @@ function WaitingRoom() {
                     navigate('/'+params.UserId+'/'+params.GameId+'/Play')
                 }
                 else if(answer.ActingUser !== params.UserId){
-                    console.log("moving to guess")
-                    console.log(answer)
-                    // navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
+                    navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
                 }
                 else{
                     console.log("else")
