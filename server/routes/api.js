@@ -50,6 +50,13 @@ router.route('/:UserId/:GameId/GuessState').put(async (req, resp) => {
     return resp.json(answer);
 })
 
+//Get Last Step
+router.route('/:GameId/GetLastStep').get(async (req, resp) => {
+    const GameId = req.params.GameId;
+    const data = await gamesBL.gameByGameId(GameId);
+    return resp.json(data[0].Step);
+})
+
 
 
 
