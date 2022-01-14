@@ -17,7 +17,6 @@ const CreateNewStep =  async (newStep , Game , MongoId) => { //new
     const gameToAdd = new gameSchema({
         GameId : Game.GameId ,
         Users : Game.Users ,
-        Steps : Game.Steps ,
         Step : Game.Step ,
         Score : Game.Score ,
         Timer : Game.Timer , 
@@ -35,7 +34,6 @@ const UpdateCanvas =  async (canvas , Game , MongoId) => { //new
     const gameToAdd = new gameSchema({
         GameId : Game.GameId ,
         Users : Game.Users ,
-        Steps : Game.Steps ,
         Step : Game.Step ,
         Score : Game.Score ,
         Timer : Game.Timer ,
@@ -53,7 +51,6 @@ const UpdatePaintingState =  async (PaintingState , Game , MongoId) => { //new
     const gameToAdd = new gameSchema({
         GameId : Game.GameId ,
         Users : Game.Users ,
-        Steps : Game.Steps ,
         Step : Game.Step ,
         Score : Game.Score ,
         Timer : Game.Timer ,
@@ -71,7 +68,6 @@ const UpdateGuessState =  async (GuessState , Game , MongoId) => { //new
     const gameToAdd = new gameSchema({
         GameId : Game.GameId ,
         Users : Game.Users ,
-        Steps : Game.Steps ,
         Step : Game.Step ,
         Score : Game.Score ,
         Timer : Game.Timer ,
