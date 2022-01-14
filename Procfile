@@ -1,1 +1,1 @@
-web: cd server && npm deploy
+web: npm --prefix ./server deploy
