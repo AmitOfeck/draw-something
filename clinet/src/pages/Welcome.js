@@ -25,6 +25,7 @@ function Welcome(props) {
             let answer = await Utils.newGame(name)
             const UserId = answer.Users[0].UserId;
             const GameId = answer.GameId;
+            console.log("welcome ------ BeforeTheGame")
             navigate('/'+UserId+'/'+GameId+'/BeforeTheGame')
         }
         else{
@@ -37,8 +38,9 @@ function Welcome(props) {
         {
             let obj = {UserName : UserName , GameId : PinCode}
             let answer = await Utils.joinGame(obj)
-            const UserId = answer.Users[0].UserId;
+            const UserId = answer.Users[1].UserId; // need to change
             const GameId = answer.GameId;
+            console.log("welcome ------ BeforeTheGame")
             navigate('/'+UserId+'/'+GameId+'/BeforeTheGame')
         }
         else{

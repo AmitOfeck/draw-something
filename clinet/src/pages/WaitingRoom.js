@@ -9,26 +9,41 @@ function WaitingRoom() {
     const params = useParams();
     const navigate = useNavigate();
 
+    const [snapshot , setSnapshot] = useState({
+        ActingUser: "" ,
+        Canvas: "" ,
+        GuessState: "" ,
+        PaintingState: "" ,
+        Points: 0 ,
+        Word: "" ,
+        _id: "" ,
+    })
+
     useEffect(async () => {
         const interval = setInterval(async () => {
             let answer = await Utils.getLastStep(params.GameId)
-            console.log(params.UserId , answer)
-            if(answer.PaintingState === "In_Progress")
-            {
-                if(answer.ActingUser === params.UserId){
+            setSnapshot(answer)
+            
+            
+        } , 5000);
+        return () => clearInterval(interval);
+    },[])
+
+    if(snapshot.PaintingState === "In_Progress")
+        {
+                if(snapshot.ActingUser.toString() === params.UserId){
+                    console.log("waiting room --- play")
                     navigate('/'+params.UserId+'/'+params.GameId+'/Play')
                 }
-                else if(answer.ActingUser !== params.UserId){
+                else if(snapshot.ActingUser.toString() !== params.UserId){
+                    console.log("waiting room --- Guess")
                     navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
+
                 }
                 else{
                     console.log("else")
                 }
-
-            }  
-        } , 5000);
-        return () => clearInterval(interval);
-    },[])
+        }  
 
 
 

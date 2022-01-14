@@ -78,8 +78,8 @@ router.route('/CreateGame').post(async (req, resp) => {
             Points : 0,
             ActingUser : UserId,
             Canvas : "",
-            PaintingState : "In_Progress",
-            GuessState : "In_Progress"
+            PaintingState : "Not_Started",
+            GuessState : "Not_Started"
         } ,
         Score : 0 ,
         Timer : 0
