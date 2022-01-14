@@ -8,6 +8,7 @@ import '../App.css';
 function WaitingRoom() {
     const params = useParams();
     const navigate = useNavigate();
+    let interval;
 
     const [snapshot , setSnapshot] = useState({
         ActingUser: "" ,
@@ -20,12 +21,11 @@ function WaitingRoom() {
     })
 
     useEffect(async () => {
-        const interval = setInterval(async () => {
+            interval = setInterval(async () => {
             let answer = await Utils.getLastStep(params.GameId)
             setSnapshot(answer)
             
-            
-        } , 5000);
+        } , 3000);
         return () => clearInterval(interval);
     },[])
 
@@ -33,10 +33,12 @@ function WaitingRoom() {
         {
                 if(snapshot.ActingUser.toString() === params.UserId){
                     console.log("waiting room --- play")
+                    clearInterval(interval)
                     navigate('/'+params.UserId+'/'+params.GameId+'/Play')
                 }
                 else if(snapshot.ActingUser.toString() !== params.UserId){
                     console.log("waiting room --- Guess")
+                    clearInterval(interval)
                     navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
 
                 }

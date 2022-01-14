@@ -9,6 +9,7 @@ import '../App.css';
 function Play() {
     const params = useParams();
     const navigate = useNavigate();
+    let interval;
 
     const [snapshot , setSnapshot] = useState({
         ActingUser: "" ,
@@ -22,10 +23,10 @@ function Play() {
 
 
     useEffect(async () => {
-        const interval = setInterval(async () => {
+            interval = setInterval(async () => {
             let answer = await Utils.getLastStep(params.GameId)
                 setSnapshot(answer)    
-        } , 5000);
+        } , 3000);
         return () => clearInterval(interval);
     },[])
 
@@ -40,6 +41,7 @@ function Play() {
     if(snapshot.PaintingState === "Done" && snapshot.GuessState === "Done" && snapshot.ActingUser.toString() === params.UserId)
     {
         console.log("play--- wait")
+        clearInterval(interval)
         navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
     }
     if(snapshot.ActingUser && snapshot.ActingUser.toString() !== params.UserId){
@@ -47,6 +49,7 @@ function Play() {
         console.log("ActingUser " , snapshot.ActingUser)
         console.log("UserId " , params.UserId)
         
+        clearInterval(interval)
         navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
     }
 

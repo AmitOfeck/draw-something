@@ -9,6 +9,7 @@ import '../App.css';
 function Guess() {
     const params = useParams();
     const navigate = useNavigate();
+    let interval;
 
     const [snapshot , setSnapshot] = useState({
         ActingUser: "" ,
@@ -23,10 +24,10 @@ function Guess() {
     const [input , setInput] = useState("xbhjchjb")
 
     useEffect(async () => {
-        const interval = setInterval(async () => {
+            interval = setInterval(async () => {
             let answer = await Utils.getLastStep(params.GameId)
                 setSnapshot(answer)    
-        } , 5000);
+        } , 3000);
         return () => clearInterval(interval);
     },[])
 
@@ -34,6 +35,7 @@ function Guess() {
         if(snapshot.Word !== "" && snapshot.Word !== null && snapshot.Word.toUpperCase() === input.toUpperCase()){
             await Utils.updateGuess(params.UserId , params.GameId , {GuessState : "Done"})
             console.log("guess --- choose word")
+            clearInterval(interval)
             navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
         }
     } ,[input])

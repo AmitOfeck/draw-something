@@ -9,6 +9,7 @@ import '../App.css';
 function BeforeTheGame(props) {
     const params = useParams();
     const navigate = useNavigate();
+    let interval;
 
     const [game , setGame] = useState({
         _id: "" ,
@@ -21,11 +22,11 @@ function BeforeTheGame(props) {
 
 
     useEffect(async () => {
-        const interval = setInterval(async () => {
+            interval = setInterval(async () => {
             let answer = await Utils.gameByGameId(params.GameId)
             if(answer[0] !== game)
             setGame(answer[0])    
-        } , 5000);
+        } , 3000);
         return () => clearInterval(interval);
     },[])
 
@@ -35,11 +36,13 @@ function BeforeTheGame(props) {
         if(game.Step.ActingUser.toString() === params.UserId)
         {
             console.log("before ------ choose word")
+            clearInterval(interval)
             navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
         }
         else
         { 
             console.log("before ------ WaitingRoom")
+            clearInterval(interval)
             navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
         }
     }
