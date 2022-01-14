@@ -12,6 +12,14 @@ var gameSchema = new mongoose.Schema({
                PaintingState : String ,
                GuessState : String 
           }] ,
+  Step : {
+  Word : String ,
+  Points : Number ,
+  ActingUser : Number ,
+  Canvas : String ,
+  PaintingState : String ,
+  GuessState : String 
+   } ,
   Score : Number ,
   Timer : Number
   

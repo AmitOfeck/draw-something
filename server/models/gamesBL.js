@@ -5,12 +5,56 @@ const gameByGameId =  async (GameId) => {
     return await gameSchema.find({GameId: GameId})
 }
 
+const CreateNewStep =  async (newStep , Game , MongoId) => { //new
+
+    Game.Step = {...newStep}; 
+
+    const gameToAdd = new gameSchema({
+        GameId : Game.GameId ,
+        Users : Game.Users ,
+        Steps : Game.Steps ,
+        Step : Game.Step ,
+        Score : Game.Score ,
+        Timer : Game.Timer , 
+        _id : MongoId
+    })
+    
+    await gameSchema.findByIdAndUpdate(MongoId , gameToAdd)
+    return gameToAdd._id
+}
+
+const UpdateCanvas =  async (canvas , Game) => { //new
+
+    Game.Step.Canvas = canvas; 
+
+    const gameToAdd = new gameSchema({
+        GameId : Game.GameId ,
+        Users : Game.Users ,
+        Steps : Game.Steps ,
+        Step : Game.Step ,
+        Score : Game.Score ,
+        Timer : Game.Timer
+    })
+    console.log(gameToAdd)
+    await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
+    return gameToAdd._id
+}
+
+
+
+
+
+
+
+
+
 const createGame =  async (newGame) => {
 
     const gameToAdd = new gameSchema({
         GameId : newGame.GameId ,
         Users : newGame.Users ,
         Steps : newGame.Steps ,
+        Step : newGame.Step ,
         Score : newGame.Score ,
         Timer : newGame.Timer
     })
@@ -28,6 +72,7 @@ const updateGame =  async (GameMongoId , updatedGame) => {
         GameId : updatedGame.GameId ,
         Users : updatedGame.Users ,
         Steps : updatedGame.Steps ,
+        Step : updatedGame.Step ,
         Score : updatedGame.Score ,
         Timer : updatedGame.Timer
     })
@@ -38,4 +83,4 @@ const updateGame =  async (GameMongoId , updatedGame) => {
 }
 
 
-module.exports = {gameByGameId , createGame , updateGame};
+module.exports = {gameByGameId , createGame , updateGame , CreateNewStep , UpdateCanvas};
