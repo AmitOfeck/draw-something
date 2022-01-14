@@ -35,8 +35,18 @@ const updateGuess = async (UserId , GameId , GuessState) => { //new
     return resp.data
 }
 
+const getLastStep = async (GameId) => {
+    let resp = await axios.get("http://localhost:8000/games/"+GameId+"/getLastStep");
+    return resp.data
+}
 
 
+
+
+const newGame = async (UserId) => {
+    let resp = await axios.post("http://localhost:8000/games/"+UserId)
+    return resp.data
+}
 
 
 const getSnapshotLastStep = async (GameId) => {
@@ -44,11 +54,6 @@ const getSnapshotLastStep = async (GameId) => {
     let lastStepIndex = resp.data[0].Steps.length-1
     let lastStepData = resp.data[0].Steps[lastStepIndex]
     return lastStepData
-}
-
-const newGame = async (UserId) => {
-    let resp = await axios.post("http://localhost:8000/games/"+UserId)
-    return resp.data
 }
 
 // const updateLastStep = async (UserId , GameId , snapshot) => {
@@ -80,4 +85,4 @@ const newGame = async (UserId) => {
 // }
 
 
-export default {gameByGameId , setNextStep , getSnapshotLastStep , newGame ,updateCanvas ,updateGuess ,updatePaintState}
+export default {gameByGameId , setNextStep , getSnapshotLastStep , newGame ,updateCanvas ,updateGuess ,updatePaintState , getLastStep}

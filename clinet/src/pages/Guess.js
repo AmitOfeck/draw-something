@@ -22,18 +22,13 @@ function Guess() {
 
     const [input , setInput] = useState("xbhjchjb")
 
-    // useEffect(async () => {
-    //     let answer = await Utils.getSnapshotLastStep(params.GameId)
-    //     setSnapshot(answer)
-    // } ,[])
-
-    // useEffect(async () => {
-    //     const interval = setInterval(async () => {
-    //         let answer = await Utils.getSnapshotLastStep(params.GameId)
-    //             setSnapshot(answer)    
-    //     } , 5000);
-    //     return () => clearInterval(interval);
-    // },[])
+    useEffect(async () => {
+        const interval = setInterval(async () => {
+            let answer = await Utils.getLastStep(params.GameId)
+                setSnapshot(answer)    
+        } , 5000);
+        return () => clearInterval(interval);
+    },[])
 
     useEffect(async () => {
         if(snapshot.Word !== "" && snapshot.Word !== null && snapshot.Word.toUpperCase() === input.toUpperCase()){

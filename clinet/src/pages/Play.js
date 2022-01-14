@@ -20,17 +20,13 @@ function Play() {
         _id: "" ,
     })
 
-    useEffect(async () => {
-        // let answer = await Utils.getSnapshotLastStep(params.GameId)
-        // setSnapshot(answer)
-    } ,[])
 
     useEffect(async () => {
-        // const interval = setInterval(async () => {
-        //     let answer = await Utils.getSnapshotLastStep(params.GameId)
-        //         setSnapshot(answer)    
-        // } , 5000);
-        // return () => clearInterval(interval);
+        const interval = setInterval(async () => {
+            let answer = await Utils.getLastStep(params.GameId)
+                setSnapshot(answer)    
+        } , 5000);
+        return () => clearInterval(interval);
     },[])
 
     useEffect(async () => {
