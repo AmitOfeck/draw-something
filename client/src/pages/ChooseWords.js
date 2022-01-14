@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate , useParams } from 'react-router-dom'
-import Utils from '../pages/Utils/Utils'
+import Utils from './Utils/Utils'
 import '../App.css'
 let randomWords = require('../API/randomWords'); 
 
