@@ -30,6 +30,17 @@ router.route('/:UserId/:GameId/setCanvas').put(async (req, resp) => {
     return resp.json(answer);
 })
 
+//Update Painting State - new
+router.route('/:UserId/:GameId/PaintingState').put(async (req, resp) => {
+    const PaintingState = req.body.PaintingState; // string of the PaintingState from json
+    const GameId = req.params.GameId;
+    const Game = await gamesBL.gameByGameId(GameId); // the old game
+    const MongoId = Game[0]._id
+    const answer = await gamesBL.UpdatePaintingState(PaintingState , Game[0] , MongoId);
+    return resp.json(answer);
+})
+
+
 
 
 
@@ -115,7 +126,7 @@ router.route('/:UserId/:GameId'+'/Guess').put(async (req, resp) => {
 })
 
 // set Paint State
-router.route('/:UserId/:GameId'+'/PaintState').put(async (req, resp) => {
+router.route('/:UserId/:GameId'+'/PaintState22').put(async (req, resp) => {
     const updatedLastStep = req.body;
     let answer = await gamesBL.gameByGameId(req.params.GameId);
     let game = answer[0];

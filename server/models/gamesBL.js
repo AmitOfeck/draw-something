@@ -46,6 +46,24 @@ const UpdateCanvas =  async (canvas , Game , MongoId) => { //new
     return gameToAdd._id
 }
 
+const UpdatePaintingState =  async (PaintingState , Game , MongoId) => { //new
+
+    Game.Step.PaintingState = PaintingState; 
+
+    const gameToAdd = new gameSchema({
+        GameId : Game.GameId ,
+        Users : Game.Users ,
+        Steps : Game.Steps ,
+        Step : Game.Step ,
+        Score : Game.Score ,
+        Timer : Game.Timer ,
+        _id : MongoId
+    })
+
+    await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
+    return gameToAdd._id
+}
+
 
 
 
@@ -89,4 +107,4 @@ const updateGame =  async (GameMongoId , updatedGame) => {
 }
 
 
-module.exports = {gameByGameId , createGame , updateGame , CreateNewStep , UpdateCanvas};
+module.exports = {gameByGameId , createGame , updateGame , CreateNewStep , UpdateCanvas , UpdatePaintingState};
