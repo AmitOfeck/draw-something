@@ -40,6 +40,16 @@ router.route('/:UserId/:GameId/PaintingState').put(async (req, resp) => {
     return resp.json(answer);
 })
 
+//Update Guess State - new
+router.route('/:UserId/:GameId/GuessState').put(async (req, resp) => {
+    const GuessState = req.body.GuessState; // string of the GuessState from json
+    const GameId = req.params.GameId;
+    const Game = await gamesBL.gameByGameId(GameId); // the old game
+    const MongoId = Game[0]._id
+    const answer = await gamesBL.UpdateGuessState(GuessState , Game[0] , MongoId);
+    return resp.json(answer);
+})
+
 
 
 
@@ -108,39 +118,39 @@ router.route('/:UserId/:GameId').post(async (req, resp) => {
 //     return resp.json(answer2);
 // })
 
-// set Guessing State
-router.route('/:UserId/:GameId'+'/Guess').put(async (req, resp) => {
-    const updatedLastStep = req.body;
-    let answer = await gamesBL.gameByGameId(req.params.GameId);
-    let game = answer[0];
-    let steps = game.Steps;
-    let lastStep = steps[steps.length - 1];
-    lastStep.GuessState = updatedLastStep.GuessState;
-    // maybe should be removed
-    steps[steps.length-1] = lastStep;
-    // steps[indexLastStep] = updatedLastStep;
-    game.Steps = steps;
-    const GameMongoId = game._id;
-    const answer2 = await gamesBL.updateGame(GameMongoId , game);
-    return resp.json(answer2);
-})
+// // set Guessing State
+// router.route('/:UserId/:GameId'+'/Guess').put(async (req, resp) => {
+//     const updatedLastStep = req.body;
+//     let answer = await gamesBL.gameByGameId(req.params.GameId);
+//     let game = answer[0];
+//     let steps = game.Steps;
+//     let lastStep = steps[steps.length - 1];
+//     lastStep.GuessState = updatedLastStep.GuessState;
+//     // maybe should be removed
+//     steps[steps.length-1] = lastStep;
+//     // steps[indexLastStep] = updatedLastStep;
+//     game.Steps = steps;
+//     const GameMongoId = game._id;
+//     const answer2 = await gamesBL.updateGame(GameMongoId , game);
+//     return resp.json(answer2);
+// })
 
-// set Paint State
-router.route('/:UserId/:GameId'+'/PaintState22').put(async (req, resp) => {
-    const updatedLastStep = req.body;
-    let answer = await gamesBL.gameByGameId(req.params.GameId);
-    let game = answer[0];
-    let steps = game.Steps;
-    let lastStep = steps[steps.length - 1];
-    lastStep.PaintingState = updatedLastStep.PaintingState;
-    // maybe should be removed
-    steps[steps.length-1] = lastStep;
-    // steps[indexLastStep] = updatedLastStep;
-    game.Steps = steps;
-    const GameMongoId = game._id;
-    const answer2 = await gamesBL.updateGame(GameMongoId , game);
-    return resp.json(answer2);
-})
+// // set Paint State
+// router.route('/:UserId/:GameId'+'/PaintState22').put(async (req, resp) => {
+//     const updatedLastStep = req.body;
+//     let answer = await gamesBL.gameByGameId(req.params.GameId);
+//     let game = answer[0];
+//     let steps = game.Steps;
+//     let lastStep = steps[steps.length - 1];
+//     lastStep.PaintingState = updatedLastStep.PaintingState;
+//     // maybe should be removed
+//     steps[steps.length-1] = lastStep;
+//     // steps[indexLastStep] = updatedLastStep;
+//     game.Steps = steps;
+//     const GameMongoId = game._id;
+//     const answer2 = await gamesBL.updateGame(GameMongoId , game);
+//     return resp.json(answer2);
+// })
 
 
 
