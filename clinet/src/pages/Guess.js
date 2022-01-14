@@ -16,29 +16,29 @@ function Guess() {
         GuessState: "" ,
         PaintingState: "" ,
         Points: 0 ,
-        Word: "" ,
+        Word: "" , 
         _id: "" ,
     })
 
     const [input , setInput] = useState("xbhjchjb")
 
-    useEffect(async () => {
-        let answer = await Utils.getSnapshotLastStep(params.GameId)
-        setSnapshot(answer)
-    } ,[])
+    // useEffect(async () => {
+    //     let answer = await Utils.getSnapshotLastStep(params.GameId)
+    //     setSnapshot(answer)
+    // } ,[])
 
-    useEffect(async () => {
-        const interval = setInterval(async () => {
-            let answer = await Utils.getSnapshotLastStep(params.GameId)
-                setSnapshot(answer)    
-        } , 5000);
-        return () => clearInterval(interval);
-    },[])
+    // useEffect(async () => {
+    //     const interval = setInterval(async () => {
+    //         let answer = await Utils.getSnapshotLastStep(params.GameId)
+    //             setSnapshot(answer)    
+    //     } , 5000);
+    //     return () => clearInterval(interval);
+    // },[])
 
     useEffect(async () => {
         if(snapshot.Word !== "" && snapshot.Word !== null && snapshot.Word.toUpperCase() === input.toUpperCase()){
             await Utils.updateGuess(params.UserId , params.GameId , {GuessState : "Done"})
-            navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
+            // navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
         }
     } ,[input])
 

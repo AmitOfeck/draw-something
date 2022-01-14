@@ -30,6 +30,13 @@ const updatePaintState = async (UserId , GameId , PaintingState) => { //new
     return resp.data
 }
 
+const updateGuess = async (UserId , GameId , GuessState) => { //new
+    let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameId+"/GuessState" , GuessState)
+    return resp.data
+}
+
+
+
 
 
 const getSnapshotLastStep = async (GameId) => {
@@ -49,11 +56,6 @@ const newGame = async (UserId) => {
 //     return resp.data
 // }
 
-
-const updateGuess = async (UserId , GameId , snapshot) => {
-    let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameId+"/Guess" , snapshot)
-    return resp.data
-}
 
 
 
