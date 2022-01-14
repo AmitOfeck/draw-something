@@ -1,3 +1,4 @@
+require("dotenv").config(); 
 var express = require('express');
 var api = require('./routes/api');
 
