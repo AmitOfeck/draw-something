@@ -1,4 +1,4 @@
-var gameSchema = require('./gameSchema')
+let gameSchema = require('./gameSchema')
 
 
 const gameByGameId =  async (GameId) => {
@@ -94,6 +94,24 @@ const createGame =  async (newGame) => {
    
 }
 
+const JoinGame =  async (JoinName , Game , MongoId) => {
+    let Users = Game.Users;
+    Users.push(JoinName)
+
+    const gameToAdd = new gameSchema({
+        GameId : Game.GameId ,
+        Users : Game.Users ,
+        Step : Game.Step ,
+        Score : Game.Score ,
+        Timer : Game.Timer ,
+        _id : MongoId
+    })
+
+    await gameSchema.findByIdAndUpdate(MongoId , gameToAdd)
+    return gameToAdd._id
+   
+}
 
 
-module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame};
+
+module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame};

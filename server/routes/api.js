@@ -88,6 +88,19 @@ router.route('/CreateGame').post(async (req, resp) => {
     return resp.json(answer);
 })
 
+//Join Game - new
+router.route('/JoinGame').put(async (req, resp) => {
+    const GameId = req.body.GameId; // {GameId : GameId , UserName : name}
+    const JoinName = {
+        UserName : req.body.UserName , 
+        UserId : gen()
+    }
+    const Game = await gamesBL.gameByGameId(GameId); // the old game
+    const MongoId = Game[0]._id
+    const answer = await gamesBL.JoinGame(JoinName ,Game[0] , MongoId);
+    return resp.json(answer);
+})
+
 
 module.exports = router;
 
