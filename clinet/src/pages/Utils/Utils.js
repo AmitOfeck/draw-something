@@ -5,6 +5,21 @@ const gameByGameId = async (GameId) => {
     return resp.data
 }
 
+const setNextStep = async (UserId , GameId , word) => { //new
+
+    let newStep = {
+        ActingUser : UserId ,
+        Canvas : "" ,
+        GuessState: "In_Progress" ,
+        PaintingState: "In_Progress" ,
+        Points : word.points ,
+        Word : word.word
+    }
+    
+    let resp = await axios.put("http://localhost:8000/games/"+UserId+"/"+GameId, newStep)
+    return resp.data
+}
+
 const getSnapshotLastStep = async (GameId) => {
     let resp = await axios.get("http://localhost:8000/games/"+GameId);
     let lastStepIndex = resp.data[0].Steps.length-1
@@ -58,4 +73,4 @@ const setNextTurn = async (UserId , GameId , word) => {
 }
 
 
-export default {gameByGameId , getSnapshotLastStep , newGame , setNextTurn ,updateCanvas ,updateGuess ,updatePaintState}
+export default {gameByGameId , setNextStep , getSnapshotLastStep , newGame , setNextTurn ,updateCanvas ,updateGuess ,updatePaintState}
