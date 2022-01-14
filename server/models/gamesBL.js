@@ -7,6 +7,11 @@ const gameByGameId =  async (GameId) => {
 
 const CreateNewStep =  async (newStep , Game , MongoId) => { //new
 
+    const pointsFtomPreviosStep = Game.Step.Points
+    let newScore = Game.Score
+    newScore = newScore + pointsFtomPreviosStep
+
+    Game.Score = newScore
     Game.Step = {...newStep}; 
 
     const gameToAdd = new gameSchema({
