@@ -40,10 +40,15 @@ const getLastStep = async (GameId) => {
     return resp.data
 }
 
-const newGame = async (UserId) => {
-    let resp = await axios.post("http://localhost:8000/games/"+UserId)
+const newGame = async (UserName) => {
+    let resp = await axios.post("http://localhost:8000/games/CreateGame" , UserName)
+    return resp.data
+}
+
+const joinGame = async (obj) => {
+    let resp = await axios.put("http://localhost:8000/games/JoinGame" , obj)
     return resp.data
 }
 
 
-export default {gameByGameId , setNextStep , updateCanvas , updatePaintState , updateGuess , getLastStep}
+export default {gameByGameId , setNextStep , updateCanvas , updatePaintState , updateGuess , getLastStep , newGame , joinGame}

@@ -90,7 +90,7 @@ const createGame =  async (newGame) => {
     })
 
     await gameToAdd.save()
-    return gameToAdd.GameId
+    return gameToAdd
    
 }
 
@@ -108,7 +108,7 @@ const JoinGame =  async (JoinName , Game , MongoId) => {
     })
 
     await gameSchema.findByIdAndUpdate(MongoId , gameToAdd)
-    return gameToAdd._id
+    return gameToAdd
    
 }
 
