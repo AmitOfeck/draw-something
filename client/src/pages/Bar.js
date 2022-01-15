@@ -9,6 +9,8 @@ import '../App.css';
 function Bar(props) {
     const params = useParams();
     const navigate = useNavigate();
+    let interval;
+
 
     const [score , setScore] = useState(0)
 
@@ -16,6 +18,17 @@ function Bar(props) {
         let points = await Utils.getScore(params.GameId)
         setScore(points)
     },[])
+
+    useEffect(async () => {
+      interval = setInterval(async () => {
+      let answer = await Utils.gameByGameId(params.GameId)
+      if(answer[0].Rating !== -1){
+        navigate('/')
+      }
+            
+      } , 3000);
+      return () => clearInterval(interval);
+      },[])
 
     const endGame = async () => {
     let answer = await Utils.endGame(params.GameId)

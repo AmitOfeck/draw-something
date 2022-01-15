@@ -127,7 +127,6 @@ const EndGame =  async (Game , MongoId) => { //new
     
    const time = Game.EndTime.valueOf() - Game.StartTime.valueOf()
    const Rate = (Game.Score/time) * 10000
-   console.log(Rate)
 
     const gameToAdd = new gameSchema({
         GameId : Game.GameId ,
@@ -139,7 +138,6 @@ const EndGame =  async (Game , MongoId) => { //new
         StartTime : Game.StartTime ,
         EndTime : Game.EndTime
     })
-    console.log(gameToAdd)
 
     await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
     return gameToAdd
