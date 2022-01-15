@@ -18,13 +18,13 @@ function Records(props) {
        setRecords(answer)
     },[])
 
-    let body = records.map(record => {
+    let body = records.map((record, index) => {
         return (<tr key={record._id}>
-        <th scope="row">1</th>
+        <th scope="row">{index + 1}</th>
         <td>{record.Users[0].UserName}</td>
         <td>{record.Users[1].UserName}</td>
         <td>{record.Score}</td>
-        <td>{Math.floor(record.Rating)}</td>
+        <td>{Math.floor((new Date(record.EndTime).valueOf() - new Date(record.StartTime).valueOf()) / 10000)}</td>
         </tr>)
     })
 
@@ -42,7 +42,7 @@ function Records(props) {
                     <th scope="col">Player 1</th>
                     <th scope="col">Player 2</th>
                     <th scope="col">Score</th>
-                    <th scope="col">Poins Per Sec</th>
+                    <th scope="col">Seconds Played</th>
                 </tr>
               </thead>
              <tbody>
