@@ -123,5 +123,29 @@ const JoinGame =  async (JoinName , Game , MongoId) => {
    
 }
 
+const EndGame =  async (Game , MongoId) => { //new
 
-module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame};
+    let endHours = Game.EndTime.getUTCHours()
+    let endMinutes = Game.EndTime.getUTCMinutes()
+    let startHours = Game.StartTime.getUTCHours()
+    let startMinutes = Game.StartTime.getUTCMinutes()
+    let Time = ( (endHours-startHours) * 60) + (endMinutes - startMinutes)
+    let Rate = Game.Score / Time 
+
+    const gameToAdd = new gameSchema({
+        GameId : Game.GameId ,
+        Users : Game.Users ,
+        Step : Game.Step ,
+        Score : Game.Score ,
+        Rating : Rate ,
+        _id : MongoId ,
+        StartTime : Game.StartTime ,
+        EndTime : Game.EndTime
+    })
+
+    await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
+    return gameToAdd._id
+}
+
+
+module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame , EndGame};

@@ -12,7 +12,6 @@ let gen = randomNumbers.generator({
 
 let currentDate = new Date();
 
-
 //Get Game By Game Id
 router.route('/:GameId').get(async (req, resp) => {
     const GameId = req.params.GameId;
@@ -120,6 +119,16 @@ router.route('/:GameId/GetScore').get(async (req, resp) => {
     const GameId = req.params.GameId;
     const data = await gamesBL.gameByGameId(GameId);
     return resp.json(data[0].Score);
+})
+
+//Update End Game - new
+router.route('/:UserId/:GameId/UpdateEndGame').get(async (req, resp) => {
+    const GameId = req.params.GameId;
+    const Game = await gamesBL.gameByGameId(GameId); // the old game
+    const MongoId = Game[0]._id;
+    Game[0].EndTime = currentDate;
+    const answer = await gamesBL.EndGame(Game[0] , MongoId);
+    return resp.json(answer);
 })
 
 
