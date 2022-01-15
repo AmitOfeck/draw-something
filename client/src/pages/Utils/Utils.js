@@ -65,5 +65,10 @@ const endGame = async (GameId) => { //new
     return resp.data
 }
 
+const getRecords = async () => { //new
+    let resp = await axios.get("http://localhost:8000/games/"+123456+"/top-games");
+    return resp.data
+}
 
-export default {gameByGameId , setNextStep , updateCanvas , updatePaintState , updateGuess , getLastStep , newGame , joinGame , getStartTime , getScore , endGame}
+
+export default {gameByGameId , setNextStep , updateCanvas , updatePaintState , updateGuess , getLastStep , newGame , joinGame , getStartTime , getScore , endGame , getRecords}
