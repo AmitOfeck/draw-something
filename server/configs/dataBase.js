@@ -2,11 +2,9 @@ var mongoose = require('mongoose');
 
 require('dotenv').config()
 
-const mongoReomoteUrl = "mongodb+srv://amitofeck:080300@cluster0.ornxe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const mongoUrl = process.env.MONGODB_URL || 'mongodb://localhost:27017/gamesDB'
 
-const localurl = 'mongodb://localhost:27017/gamesDB'
-
-mongoose.connect(mongoReomoteUrl,{
+mongoose.connect(mongoUrl,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
