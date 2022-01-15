@@ -49,6 +49,8 @@ function Records(props) {
                 {body}
              </tbody>
            </table>
+           <br/>
+           <button type="button" className="btn btn-outline-secondary" onClick={ () => navigate('/')}>Home</button>
         </div>
     );
 }

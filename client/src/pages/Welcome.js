@@ -5,6 +5,7 @@ import { useNavigate , useParams } from 'react-router-dom'
 import Utils from './Utils/Utils';
 import '../App.css';
 import pen from '../images/pen.jpeg'
+import win from '../images/win.jpeg'
 
 
 function Welcome(props) {
@@ -63,7 +64,9 @@ function Welcome(props) {
               <div className="container">
                 <img src={pen} width="60" height="60" id="pen"/>
                 <h2>Draw & Guess </h2>
-                <div></div>
+                <div>
+                <img src={win} width="60" height="60" id="pen" onClick={ () => navigate('/Records')}/>
+                </div>
               </div>
             </nav>
 
