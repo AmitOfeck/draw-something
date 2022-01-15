@@ -23,6 +23,7 @@ function Bar(props) {
       interval = setInterval(async () => {
       let answer = await Utils.gameByGameId(params.GameId)
       if(answer[0].Rating !== -1){
+        clearInterval(interval)
         navigate('/')
       }
             

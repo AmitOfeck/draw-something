@@ -33,18 +33,28 @@ function Welcome(props) {
      }
 
      const JoinGame = async (UserName , PinCode) => {
-        if(name.UserName !== "" || input.GameId !== 0)
+        let answer2 = await Utils.gameByGameId(PinCode)
+        if(answer2[0].Users.Length !== 2)
         {
-            let obj = {UserName : UserName , GameId : PinCode}
-            let answer = await Utils.joinGame(obj)
-            const UserId = answer.Users[1].UserId; // need to change
-            const GameId = answer.GameId;
-            console.log("welcome ------ BeforeTheGame")
-            navigate('/'+UserId+'/'+GameId+'/BeforeTheGame')
+            if(name.UserName !== "" || input.GameId !== 0)
+            {
+                let obj = {UserName : UserName , GameId : PinCode}
+                let answer = await Utils.joinGame(obj)
+                const UserId = answer.Users[1].UserId; // need to change
+                const GameId = answer.GameId;
+                console.log("welcome ------ BeforeTheGame")
+                navigate('/'+UserId+'/'+GameId+'/BeforeTheGame')
+            }
+            else{
+                alert(`Missing Player Name or Missing Pin Code`)
+            }
         }
-        else{
-            alert(`Missing Player Name or Missing Pin Code`)
+        else
+        {
+            alert(`Game Already Full`)
         }
+
+        
      }
 
     return (
