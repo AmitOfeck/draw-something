@@ -50,5 +50,15 @@ const joinGame = async (obj) => {
     return resp.data
 }
 
+const getStartTime = async (GameId) => { //new
+    let resp = await axios.get("http://localhost:8000/games/"+GameId+"/GetStartTime");
+    return resp.data
+}
 
-export default {gameByGameId , setNextStep , updateCanvas , updatePaintState , updateGuess , getLastStep , newGame , joinGame}
+const getScore = async (GameId) => { //new
+    let resp = await axios.get("http://localhost:8000/games/"+GameId+"/GetScore");
+    return resp.data
+}
+
+
+export default {gameByGameId , setNextStep , updateCanvas , updatePaintState , updateGuess , getLastStep , newGame , joinGame , getStartTime , getScore}
