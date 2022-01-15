@@ -122,7 +122,7 @@ router.route('/:GameId/GetScore').get(async (req, resp) => {
 })
 
 //Update End Game - new
-router.route('/:UserId/:GameId/UpdateEndGame').get(async (req, resp) => {
+router.route('/:GameId/UpdateEndGame').get(async (req, resp) => {
     const GameId = req.params.GameId;
     const Game = await gamesBL.gameByGameId(GameId); // the old game
     const MongoId = Game[0]._id;

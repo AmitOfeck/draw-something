@@ -18,12 +18,14 @@ function Bar(props) {
     },[])
 
     const endGame = async () => {
-    let answer = await Utils.getStartTime(params.GameId)
+    let answer = await Utils.endGame(params.GameId)
+    console.log(answer)
     }
  
     return (
         <div>
-            <nav className="navbar navbar-dark bg-dark">
+            <nav className="navbar navbar-dark bg-dark" id="navBarr">
+               <div></div>
                <div className="gold">
                  {score} points
                </div>
