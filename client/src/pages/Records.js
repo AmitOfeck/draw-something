@@ -21,8 +21,8 @@ function Records(props) {
     let body = records.map((record, index) => {
         return (<tr key={record._id}>
         <th scope="row">{index + 1}</th>
-        <td>{record.Users[0].UserName}</td>
-        <td>{record.Users[1].UserName}</td>
+        <td>{record.Users[0]?.UserName}</td>
+        <td>{record.Users[1]?.UserName}</td>
         <td>{record.Score}</td>
         <td>{Math.floor((new Date(record.EndTime).valueOf() - new Date(record.StartTime).valueOf()) / 10000)}</td>
         </tr>)
