@@ -13,7 +13,7 @@ var gameSchema = new mongoose.Schema({
   GuessState : String 
    } ,
   Score : Number ,
-  Rating : Number ,
+  Rating : {type : Number , index : true} ,
   StartTime : Date ,
   EndTime : Date
   

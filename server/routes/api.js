@@ -84,7 +84,7 @@ router.route('/CreateGame').post(async (req, resp) => {
             GuessState : "Not_Started"
         } ,
         Score : 0 ,
-        Rating : 0 , 
+        Rating : -1 , 
         StartTime : currentDate ,
         EndTime : currentDate 
     }
@@ -129,6 +129,12 @@ router.route('/:GameId/UpdateEndGame').get(async (req, resp) => {
     const MongoId = Game[0]._id;
     Game[0].EndTime = new Date();
     const answer = await gamesBL.EndGame(Game[0] , MongoId);
+    return resp.json(answer);
+})
+
+//Update Bring Top Games - new
+router.route('/:GameId/top-games').get(async (_, resp) => {
+    const answer = await gamesBL.findMaxRate();
     return resp.json(answer);
 })
 

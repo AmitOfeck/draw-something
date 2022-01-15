@@ -145,5 +145,10 @@ const EndGame =  async (Game , MongoId) => { //new
     return gameToAdd
 }
 
+const findMaxRate = async () => {
+    return await gameSchema.find().sort({Rating:-1}).limit(5)
 
-module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame , EndGame};
+}
+
+
+module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame , EndGame , findMaxRate};
