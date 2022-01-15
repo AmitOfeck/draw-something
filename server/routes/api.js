@@ -115,6 +115,13 @@ router.route('/:GameId/GetStartTime').get(async (req, resp) => {
     return resp.json(data[0].StartTime);
 })
 
+//Get Score
+router.route('/:GameId/GetScore').get(async (req, resp) => {
+    const GameId = req.params.GameId;
+    const data = await gamesBL.gameByGameId(GameId);
+    return resp.json(data[0].Score);
+})
+
 
 module.exports = router;
 
