@@ -4,6 +4,7 @@ import CanvasDraw from "react-canvas-draw";
 import { useNavigate , useParams } from 'react-router-dom'
 import Utils from './Utils/Utils';
 import '../App.css';
+import Bar from './Bar';
 
 function WaitingRoom() {
     const params = useParams();
@@ -51,6 +52,7 @@ function WaitingRoom() {
 
     return (
         <div>
+            
             <br/><br/><br/><br/>
             <h1>Waiting Room...</h1>
             <br/>

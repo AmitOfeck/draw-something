@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate , useParams } from 'react-router-dom'
 import Utils from '../pages/Utils/Utils'
 import '../App.css'
+import Bar from './Bar';
 let randomWords = require('../API/randomWords'); 
 
 
@@ -31,6 +32,7 @@ function ChooseWords(props) {
 
     return (
         <div>
+            
             <h2>Choose Words</h2>
 
             <div id="drawBoard">

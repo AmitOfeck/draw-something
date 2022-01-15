@@ -4,6 +4,7 @@ import CanvasDraw from "react-canvas-draw";
 import { useNavigate , useParams } from 'react-router-dom'
 import Utils from './Utils/Utils';
 import '../App.css';
+import Bar from './Bar';
 
 
 function Play() {
@@ -55,6 +56,7 @@ function Play() {
 
     return (
         <div>
+            <Bar/>
             <h2>Draw</h2>
             <div id="drawBoard">
                 <div></div> 

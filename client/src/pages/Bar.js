@@ -19,7 +19,7 @@ function Bar(props) {
 
     const endGame = async () => {
     let answer = await Utils.endGame(params.GameId)
-    console.log(answer)
+    navigate('/')
     }
  
     return (

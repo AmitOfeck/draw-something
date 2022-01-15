@@ -4,6 +4,7 @@ import CanvasDraw from "react-canvas-draw";
 import { useNavigate , useParams } from 'react-router-dom'
 import Utils from './Utils/Utils';
 import '../App.css';
+import Bar from './Bar';
 
 
 function Guess() {
@@ -60,6 +61,7 @@ function Guess() {
 
     return (
         <div>
+            <Bar/>
             <h2>Guess</h2>
             <img src={snapshot.Canvas} id={frame}></img>
             <br/> <br/>

@@ -4,7 +4,6 @@ import BeforeTheGame from '../BeforeTheGame';
 import ChooseWords from '../ChooseWords';
 import Guess from '../Guess';
 import Play from '../Play';
-import TurnRouter from '../TurnRouter';
 import WaitingRoom from '../WaitingRoom';
 import Welcome from '../Welcome';
 import Bar from '../Bar';
@@ -15,7 +14,7 @@ function Router() {
         <div>
             <Routes>
             <Route path="/" exact element={<Welcome/>}/>
-            <Route path="/:GameId/Bar" exact element={<Bar/>} />
+            {/* <Route path="/:GameId/Bar" exact element={<Bar/>} /> */}
             <Route path="/:UserId/:GameId/BeforeTheGame" exact element={<BeforeTheGame/>}/>
             <Route path="/:UserId/:GameId/Play" exact element={<Play/>}/>
             <Route path="/:UserId/:GameId/Guess" exact element={<Guess/>}/>
