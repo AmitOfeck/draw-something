@@ -19,8 +19,10 @@ const CreateNewStep =  async (newStep , Game , MongoId) => { //new
         Users : Game.Users ,
         Step : Game.Step ,
         Score : Game.Score ,
-        Timer : Game.Timer , 
-        _id : MongoId
+        Rating : Game.Rating , 
+        _id : MongoId ,
+        StartTime : Game.StartTime ,
+        EndTime : Game.EndTime
     })
     
     await gameSchema.findByIdAndUpdate(MongoId , gameToAdd)
@@ -36,8 +38,10 @@ const UpdateCanvas =  async (canvas , Game , MongoId) => { //new
         Users : Game.Users ,
         Step : Game.Step ,
         Score : Game.Score ,
-        Timer : Game.Timer ,
-        _id : MongoId
+        Rating : Game.Rating ,
+        _id : MongoId ,
+        StartTime : Game.StartTime ,
+        EndTime : Game.EndTime
     })
 
     await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
@@ -53,8 +57,10 @@ const UpdatePaintingState =  async (PaintingState , Game , MongoId) => { //new
         Users : Game.Users ,
         Step : Game.Step ,
         Score : Game.Score ,
-        Timer : Game.Timer ,
-        _id : MongoId
+        Rating : Game.Rating ,
+        _id : MongoId ,
+        StartTime : Game.StartTime ,
+        EndTime : Game.EndTime
     })
 
     await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
@@ -70,14 +76,15 @@ const UpdateGuessState =  async (GuessState , Game , MongoId) => { //new
         Users : Game.Users ,
         Step : Game.Step ,
         Score : Game.Score ,
-        Timer : Game.Timer ,
-        _id : MongoId
+        Rating : Game.Rating ,
+        _id : MongoId ,
+        StartTime : Game.StartTime ,
+        EndTime : Game.EndTime
     })
 
     await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
     return gameToAdd._id
 }
-
 
 const createGame =  async (newGame) => {
 
@@ -86,7 +93,9 @@ const createGame =  async (newGame) => {
         Users : newGame.Users ,
         Step : newGame.Step ,
         Score : newGame.Score ,
-        Timer : newGame.Timer
+        Rating : newGame.Rating ,
+        StartTime : newGame.StartTime ,
+        EndTime : newGame.EndTime
     })
 
     await gameToAdd.save()
@@ -103,15 +112,16 @@ const JoinGame =  async (JoinName , Game , MongoId) => {
         Users : Game.Users ,
         Step : Game.Step ,
         Score : Game.Score ,
-        Timer : Game.Timer ,
-        _id : MongoId
+        Rating : Game.Rating ,
+        _id : MongoId ,
+        StartTime : Game.StartTime ,
+        EndTime : Game.EndTime
     })
 
     await gameSchema.findByIdAndUpdate(MongoId , gameToAdd)
     return gameToAdd
    
 }
-
 
 
 module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame};

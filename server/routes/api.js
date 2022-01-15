@@ -4,10 +4,13 @@ const router = express.Router();
 
 let randomNumbers = require('random-number');
 let gen = randomNumbers.generator({
+
     min:  1000
   , max:  1000000
   , integer: true
   })
+
+let currentDate = new Date();
 
 
 //Get Game By Game Id
@@ -82,7 +85,9 @@ router.route('/CreateGame').post(async (req, resp) => {
             GuessState : "Not_Started"
         } ,
         Score : 0 ,
-        Timer : 0
+        Rating : 0 , 
+        StartTime : currentDate ,
+        EndTime : currentDate 
     }
     const answer = await gamesBL.createGame(newGame);
     return resp.json(answer);
@@ -97,6 +102,8 @@ router.route('/JoinGame').put(async (req, resp) => {
     }
     const Game = await gamesBL.gameByGameId(GameId); // the old game
     const MongoId = Game[0]._id
+    Game[0].StartTime = currentDate
+    Game[0].EndTime = currentDate
     const answer = await gamesBL.JoinGame(JoinName ,Game[0] , MongoId);
     return resp.json(answer);
 })
