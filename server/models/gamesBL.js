@@ -124,13 +124,10 @@ const JoinGame =  async (JoinName , Game , MongoId) => {
 }
 
 const EndGame =  async (Game , MongoId) => { //new
-
-    let endHours = Game.EndTime.getUTCHours()
-    let endMinutes = Game.EndTime.getUTCMinutes()
-    let startHours = Game.StartTime.getUTCHours()
-    let startMinutes = Game.StartTime.getUTCMinutes()
-    let Time = ( (endHours-startHours) * 60) + (endMinutes - startMinutes)
-    let Rate = Game.Score / Time 
+    
+   const time = Game.EndTime.valueOf() - Game.StartTime.valueOf()
+   const Rate = (Game.Score/time) * 10000
+   console.log(Rate)
 
     const gameToAdd = new gameSchema({
         GameId : Game.GameId ,
@@ -142,9 +139,10 @@ const EndGame =  async (Game , MongoId) => { //new
         StartTime : Game.StartTime ,
         EndTime : Game.EndTime
     })
+    console.log(gameToAdd)
 
     await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
-    return gameToAdd._id
+    return gameToAdd
 }
 
 

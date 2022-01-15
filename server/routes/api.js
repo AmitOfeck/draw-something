@@ -101,8 +101,8 @@ router.route('/JoinGame').put(async (req, resp) => {
     }
     const Game = await gamesBL.gameByGameId(GameId); // the old game
     const MongoId = Game[0]._id
-    Game[0].StartTime = currentDate
-    Game[0].EndTime = currentDate
+    Game[0].StartTime = new Date()
+    Game[0].EndTime = undefined
     const answer = await gamesBL.JoinGame(JoinName ,Game[0] , MongoId);
     return resp.json(answer);
 })
@@ -123,10 +123,11 @@ router.route('/:GameId/GetScore').get(async (req, resp) => {
 
 //Update End Game - new
 router.route('/:GameId/UpdateEndGame').get(async (req, resp) => {
+    
     const GameId = req.params.GameId;
     const Game = await gamesBL.gameByGameId(GameId); // the old game
     const MongoId = Game[0]._id;
-    Game[0].EndTime = currentDate;
+    Game[0].EndTime = new Date();
     const answer = await gamesBL.EndGame(Game[0] , MongoId);
     return resp.json(answer);
 })

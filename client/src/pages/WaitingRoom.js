@@ -33,12 +33,10 @@ function WaitingRoom() {
     if(snapshot.PaintingState === "In_Progress")
         {
                 if(snapshot.ActingUser.toString() === params.UserId){
-                    console.log("waiting room --- play")
                     clearInterval(interval)
                     navigate('/'+params.UserId+'/'+params.GameId+'/Play')
                 }
                 else if(snapshot.ActingUser.toString() !== params.UserId){
-                    console.log("waiting room --- Guess")
                     clearInterval(interval)
                     navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
 

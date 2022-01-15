@@ -35,7 +35,6 @@ function Guess() {
     useEffect(async () => {
         if(snapshot.Word !== "" && snapshot.Word !== null && snapshot.Word.toUpperCase() === input.toUpperCase()){
             await Utils.updateGuess(params.UserId , params.GameId , {GuessState : "Done"})
-            console.log("guess --- choose word")
             clearInterval(interval)
             navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
         }

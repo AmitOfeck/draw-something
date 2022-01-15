@@ -35,13 +35,11 @@ function BeforeTheGame(props) {
 
         if(game.Step.ActingUser.toString() === params.UserId)
         {
-            console.log("before ------ choose word")
             clearInterval(interval)
             navigate('/'+params.UserId+'/'+params.GameId+'/ChooseWords')
         }
         else
         { 
-            console.log("before ------ WaitingRoom")
             clearInterval(interval)
             navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
         }

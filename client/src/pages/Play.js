@@ -41,15 +41,10 @@ function Play() {
 
     if(snapshot.PaintingState === "Done" && snapshot.GuessState === "Done" && snapshot.ActingUser.toString() === params.UserId)
     {
-        console.log("play--- wait")
         clearInterval(interval)
         navigate('/'+params.UserId+'/'+params.GameId+'/WaitingRoom')
     }
     if(snapshot.ActingUser && snapshot.ActingUser.toString() !== params.UserId){
-        console.log("play--- Guess")
-        console.log("ActingUser " , snapshot.ActingUser)
-        console.log("UserId " , params.UserId)
-        
         clearInterval(interval)
         navigate('/'+params.UserId+'/'+params.GameId+'/Guess')
     }

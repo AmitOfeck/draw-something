@@ -31,7 +31,7 @@ function Bar(props) {
                </div>
 
                <div>
-                 <button type="button" className="btn btn-danger" onClick = {() => endGame()}>End Game</button>
+                 <button type="button" className="btn btn-danger" onClick = {() => endGame(params.GameId)}>End Game</button>
                </div>
 
             </nav>
