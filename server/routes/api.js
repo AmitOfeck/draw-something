@@ -108,6 +108,13 @@ router.route('/JoinGame').put(async (req, resp) => {
     return resp.json(answer);
 })
 
+//Get StartTime
+router.route('/:GameId/GetStartTime').get(async (req, resp) => {
+    const GameId = req.params.GameId;
+    const data = await gamesBL.gameByGameId(GameId);
+    return resp.json(data[0].StartTime);
+})
+
 
 module.exports = router;
 
