@@ -19,13 +19,13 @@ First of all download mongo.
 In order to run the project, please clone the repo "git remote set-url origin https://github.com/AmitOfeck/draw-something.git"
 and then run the following commands:
 
-go to server folder:
-run npm install
-run node index.js
+1. go to server folder:
+2. run npm install
+3. run node index.js
 
-go to client/my-app folder:
-run npm install
-run npm start
+1. go to client/my-app folder:
+2. run npm install
+3. run npm start
 
 #### Run in heroku
 Click on http://draw-guess-app-client.herokuapp.com/ 
