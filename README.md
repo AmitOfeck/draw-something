@@ -1,9 +1,7 @@
 # draw-something
 
 ###Info <br/>
-Project Name: draw-something<br/>
-Node version: v16.13.0 <br/>
-Npm version: 8.1.0<br/>
+Project Name: draw-something    Node version: v16.13.0    Npm version: 8.1.0
 
 ###Overview <br/>
 A‘Draw & Guess’ game for 2 players.
@@ -13,11 +11,9 @@ The second player will see the drawing and will try to guess the word.
 Once succeed, he will get to pick a new word, draw it, and so on.
 
 Server was written with Express framework, using Mongo as db.
-
 Client was written with React
 
 ###Instructions
-
 In order to run the project, please clone the repo and then run the following commands:
 
 go to server folder:
