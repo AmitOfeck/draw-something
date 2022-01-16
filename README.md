@@ -1,6 +1,6 @@
 # draw-something
 
-###Info
+###Info <br/>
 Project Name: draw-something
 Node version: v16.13.0 
 Npm version: 8.1.0
