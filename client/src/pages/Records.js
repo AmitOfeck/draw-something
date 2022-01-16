@@ -42,7 +42,7 @@ function Records(props) {
                     <th scope="col">Player 1</th>
                     <th scope="col">Player 2</th>
                     <th scope="col">Score</th>
-                    <th scope="col">Seconds Played</th>
+                    <th scope="col">PPS</th>
                 </tr>
               </thead>
              <tbody>
