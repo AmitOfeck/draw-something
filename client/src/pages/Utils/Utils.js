@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:8000/games/" // if we want back to heroku "https://draw-guess-app-server.herokuapp.com/games/"
+const localUrl = "http://localhost:8000/games/" 
+const productionUrl = "https://draw-guess-app-server.herokuapp.com/games/"
+const baseUrl = productionUrl // if we want back to local , use localUrl
 
 const gameByGameId = async (GameId) => {
     let resp = await axios.get(baseUrl+GameId);
