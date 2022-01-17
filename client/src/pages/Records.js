@@ -24,7 +24,6 @@ function Records(props) {
         <td>{record.Users[0]?.UserName}</td>
         <td>{record.Users[1]?.UserName}</td>
         <td>{record.Score}</td>
-        {/* <td>{Math.floor((new Date(record.EndTime).valueOf() - new Date(record.StartTime).valueOf()) / 10000)}</td> */}
         <td>{Math.ceil(record.Rating)}</td>
         </tr>)
     })
