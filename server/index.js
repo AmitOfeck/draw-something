@@ -3,6 +3,18 @@ var api = require('./routes/api');
 
 var app = express();
 
+//webSocket
+const WebSocket = require("ws")
+const wss = new WebSocket.Server({port : 8080})
+wss.on("connection" , ws => {
+  console.log("New client connected");
+
+  ws.on("close", () => {
+      console.log("Client has disconnected")
+  });
+})
+//////////
+
 require ('./configs/dataBase')
 require('dotenv').config()
 
