@@ -1,6 +1,10 @@
 let gameSchema = require('./gameSchema')
 
+// key is userId, value is WS
 const webSockets = new Map();
+
+// Maybe add another map key is WS userId is value
+// const reverseWS = new Map()
 
 
 

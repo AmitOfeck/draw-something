@@ -25,7 +25,9 @@ wss.on("connection" , ws => {
   });
 
   ws.on("close", () => {
-    // gamesBL.webSockets.delete(ws)
+    // const something = gamesBL.reverseWS.get(ws)
+    //  gamesBL.reverseWS.delete(ws)
+    //  gamesBL.webSockets.delete(something)
       console.log("Client has disconnected")
   });
 
