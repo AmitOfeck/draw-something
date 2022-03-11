@@ -138,6 +138,11 @@ router.route('/:GameId/top-games').get(async (_, resp) => {
     return resp.json(answer);
 })
 
+//Update Bring Top Games - new
+router.route('/ping').get(async (_, resp) => {
+    
+})
+
 
 module.exports = router;
 
