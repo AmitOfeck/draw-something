@@ -1,5 +1,9 @@
 let gameSchema = require('./gameSchema')
 
+const webSockets = new Map();
+
+
+
 
 const gameByGameId =  async (GameId) => {
     return await gameSchema.find({GameId: GameId})
@@ -105,6 +109,7 @@ const createGame =  async (newGame) => {
 
 const JoinGame =  async (JoinName , Game , MongoId) => {
     let Users = Game.Users;
+    
     Users.push(JoinName)
 
     const gameToAdd = new gameSchema({
@@ -119,6 +124,15 @@ const JoinGame =  async (JoinName , Game , MongoId) => {
     })
 
     await gameSchema.findByIdAndUpdate(MongoId , gameToAdd)
+    gameToAdd.Users.forEach((user) => {
+        const socket = webSockets.get(user.UserId)
+        if(socket) {
+        socket.send(JSON.stringify(gameToAdd))
+        }
+        else {
+            console.log('socket not found')
+        }
+    })
     return gameToAdd
    
 }
@@ -149,4 +163,4 @@ const findMaxRate = async () => {
 }
 
 
-module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame , EndGame , findMaxRate};
+module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame , EndGame , findMaxRate, webSockets};

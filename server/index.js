@@ -1,5 +1,6 @@
 var express = require('express');
 var api = require('./routes/api');
+const gamesBL = require('./models/gamesBL');
 
 var app = express();
 
@@ -7,24 +8,27 @@ var app = express();
 const WebSocket = require("ws")
 
 const wss = new WebSocket.Server({port : 8080})
-const clients = {};
-let i = 0;
 
 
 wss.on("connection" , ws => {
   console.log("New client connected");
-  clients['foo'] = ws;
 
-
+  
   ws.on("message" , data => {
   console.log(`Client has sent us: ${data}`)
-
-  ws.send("Messeage from server to client :" + data)
+  const { userId } = JSON.parse(data);
+  if(userId) {
+    gamesBL.webSockets.set(userId,ws)
+    // console.log(gamesBL.webSockets);
+  }
+  // ws.send("Messeage from server to client :" + data)
   });
 
   ws.on("close", () => {
+    // gamesBL.webSockets.delete(ws)
       console.log("Client has disconnected")
   });
+
 })
 //////////
 

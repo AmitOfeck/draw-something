@@ -11,16 +11,6 @@ function Records(props) {
     const params = useParams();
     const navigate = useNavigate();
 
-    const ws = new WebSocket("ws://localhost:8080");
-
-    ws.addEventListener("open" , () => {
-      ws.send("Hey, how's it going?")
-    });
-
-    ws.addEventListener("message" , e => {
-      console.log('getting message', e)
-    });
-
     const [records , setRecords] = useState([])
 
     useEffect(async () => {
