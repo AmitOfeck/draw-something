@@ -4,7 +4,7 @@ let gameSchema = require('./gameSchema')
 const webSockets = new Map();
 
 // Maybe add another map key is WS userId is value
-// const reverseWS = new Map()
+const reverseWS = new Map()
 
 
 
@@ -167,4 +167,4 @@ const findMaxRate = async () => {
 }
 
 
-module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame , EndGame , findMaxRate, webSockets};
+module.exports = {gameByGameId , CreateNewStep , UpdateCanvas , UpdatePaintingState , UpdateGuessState , createGame , JoinGame , EndGame , findMaxRate, webSockets , reverseWS};

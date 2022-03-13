@@ -19,16 +19,16 @@ wss.on("connection" , ws => {
   const { userId } = JSON.parse(data);
   if(userId) {
     gamesBL.webSockets.set(userId,ws)
+    gamesBL.reverseWS.set(ws,userId)
     // console.log(gamesBL.webSockets);
   }
   // ws.send("Messeage from server to client :" + data)
   });
 
   ws.on("close", () => {
-    // const something = gamesBL.reverseWS.get(ws)
-    //  gamesBL.reverseWS.delete(ws)
-    //  gamesBL.webSockets.delete(something)
-      console.log("Client has disconnected")
+    const key = gamesBL.reverseWS.get(ws)
+    gamesBL.reverseWS.delete(key)
+    console.log("Client has disconnected")
   });
 
 })
