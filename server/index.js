@@ -17,10 +17,13 @@ wss.on("connection" , ws => {
   ws.on("message" , data => {
   console.log(`Client has sent us: ${data}`)
   const { userId } = JSON.parse(data);
+  console.log(userId)
   if(userId) {
-    gamesBL.webSockets.set(userId,ws)
+    console.log("in")
+    console.log(gamesBL.webSockets.size)
+    gamesBL.webSockets[userId] = ws
     gamesBL.reverseWS.set(ws,userId)
-    // console.log(gamesBL.webSockets);
+    console.log(Object.keys(gamesBL.webSockets));
   }
   // ws.send("Messeage from server to client :" + data)
   });

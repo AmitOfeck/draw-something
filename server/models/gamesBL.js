@@ -1,12 +1,10 @@
 let gameSchema = require('./gameSchema')
 
 // key is userId, value is WS
-const webSockets = new Map();
+const webSockets = {} // new Map();
 
 // Maybe add another map key is WS userId is value
 const reverseWS = new Map()
-
-
 
 
 const gameByGameId =  async (GameId) => {
@@ -127,11 +125,18 @@ const JoinGame =  async (JoinName , Game , MongoId) => {
         EndTime : Game.EndTime
     })
 
+    // console.log(gameToAdd.Users)
+    console.log(webSockets.size)
+
     await gameSchema.findByIdAndUpdate(MongoId , gameToAdd)
     gameToAdd.Users.forEach((user) => {
-        const socket = webSockets.get(user.UserId)
+        console.log("want to send to user: " + user.UserId)
+        // console.log(webSockets)
+        let socket = webSockets[user.UserId.toString()]
+        // console.log("id: " + socket)
         if(socket) {
-        socket.send(JSON.stringify(gameToAdd))
+        console.log("Game is on!! " + user.UserId)
+        socket.send(JSON.stringify({game:gameToAdd}))
         }
         else {
             console.log('socket not found')

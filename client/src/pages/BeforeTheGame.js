@@ -20,15 +20,21 @@ function BeforeTheGame(props) {
         Users: [] ,
     })
 
-    useEffect(() => {
+    useEffect(async () => {
         console.log('sending!')
+        console.log(params.UserId)
         const message = { userId: params.UserId }
         props.ws?.send(JSON.stringify(message))
+
+        let answer = await Utils.gameByGameId(params.GameId)
+        if(answer[0] !== game){
+            setGame(answer[0])    
+        }
     }, [])
 
     props.ws?.addEventListener("message" , message => {
-        console.log('got a message', message)
-        const game = JSON.parse(message);
+        console.log('got a message', message.data)
+        const game = JSON.parse(message.data).game;
         setGame(game);
       });
 
