@@ -29,10 +29,18 @@ function Guess(props) {
         setSnapshot(answer)    
     },[])
 
-    props.ws?.addEventListener("message" , message => {
+    props.ws.addEventListener("message" , message => {
         console.log('got a message',  JSON.parse(message.data).message)
-        const CanvasReceived = JSON.parse(message.data).Canvas;
-        setSnapshot({...snapshot , Canvas : CanvasReceived});
+
+        if(JSON.parse(message.data).type === "Canvas"){
+            const CanvasReceived = JSON.parse(message.data).Canvas;
+            setSnapshot({...snapshot , Canvas : CanvasReceived});
+        }   
+        else if(JSON.parse(message.data).type === "PaintingState"){
+            const PaintingStateReceived = JSON.parse(message.data).PaintingState;
+            setSnapshot({...snapshot , PaintingState : PaintingStateReceived});
+        }
+          
       });
 
     // useEffect(async () => {
@@ -75,7 +83,6 @@ function Guess(props) {
             <h2>Guess</h2>
             <img src={snapshot.Canvas} id={frame}></img>
             <br/> <br/>
-            {/* <h4>Length of the word  : {snapshot.Word.length}</h4> */}
             {GuessInput}
             
         </div>
