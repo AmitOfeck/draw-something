@@ -50,6 +50,18 @@ const UpdateCanvas =  async (canvas , Game , MongoId) => { //new
         EndTime : Game.EndTime
     })
 
+
+    const GuessingUser = gameToAdd.Users.filter((user) => user.UserId !== gameToAdd.Step.ActingUser)
+    console.log("GuessingUser: " + GuessingUser) ////
+    let socket = webSockets[GuessingUser[0].UserId.toString()]
+    if(socket) {
+    socket.send(JSON.stringify({Canvas: gameToAdd.Step.Canvas , message:"you received canvas!!"}))
+    }
+    else {
+        console.log('socket not found')
+    }
+
+
     await gameSchema.findByIdAndUpdate(gameToAdd._id , gameToAdd)
     return gameToAdd._id
 }
@@ -125,9 +137,8 @@ const JoinGame =  async (JoinPlayer , Game , MongoId) => {
         EndTime : Game.EndTime
     })
 
-    console.log(gameToAdd.Step)
-    console.log(gameToAdd.Users)
-
+    // console.log(gameToAdd.Step)
+    // console.log(gameToAdd.Users)
 
     await gameSchema.findByIdAndUpdate(MongoId , gameToAdd)
     gameToAdd.Users.forEach((user) => {

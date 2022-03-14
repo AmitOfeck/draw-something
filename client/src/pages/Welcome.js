@@ -23,8 +23,6 @@ function Welcome(props) {
      const createGame = async (name) => {
         if(name.UserName !== "")
         {
-            // let message = { userId: params.UserId }
-            // props.ws?.send(JSON.stringify(message))
             let answer = await Utils.newGame(name)
             const UserId = answer.Users[0].UserId;
             const GameId = answer.GameId;
@@ -36,9 +34,7 @@ function Welcome(props) {
      }
 
      const JoinGame = async (UserName , PinCode) => {
-        // console.log('sending!')
-        // let message = { userId: params.UserId }
-        // await props.ws?.send(JSON.stringify(message))
+         
         let answer2 = await Utils.gameByGameId(PinCode)
         if(answer2[0].Users.Length !== 2)
         {

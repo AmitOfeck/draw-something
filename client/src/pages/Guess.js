@@ -7,7 +7,7 @@ import '../App.css';
 import Bar from './Bar';
 
 
-function Guess() {
+function Guess(props) {
     const params = useParams();
     const navigate = useNavigate();
     let interval;
@@ -25,12 +25,23 @@ function Guess() {
     const [input , setInput] = useState("xbhjchjb")
 
     useEffect(async () => {
-            interval = setInterval(async () => {
-            let answer = await Utils.getLastStep(params.GameId)
-                setSnapshot(answer)    
-        } , 3000);
-        return () => clearInterval(interval);
+        let answer = await Utils.getLastStep(params.GameId)
+        setSnapshot(answer)    
     },[])
+
+    props.ws?.addEventListener("message" , message => {
+        console.log('got a message',  JSON.parse(message.data).message)
+        const CanvasReceived = JSON.parse(message.data).Canvas;
+        setSnapshot({...snapshot , Canvas : CanvasReceived});
+      });
+
+    // useEffect(async () => {
+    //         interval = setInterval(async () => {
+    //         let answer = await Utils.getLastStep(params.GameId)
+    //             setSnapshot(answer)    
+    //     } , 3000);
+    //     return () => clearInterval(interval);
+    // },[])
 
     useEffect(async () => {
         if(snapshot.Word !== "" && snapshot.Word !== null && snapshot.Word.toUpperCase() === input.toUpperCase()){
