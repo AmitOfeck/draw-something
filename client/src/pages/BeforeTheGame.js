@@ -33,7 +33,7 @@ function BeforeTheGame(props) {
     }, [])
 
     props.ws?.addEventListener("message" , message => {
-        console.log('got a message', message.data)
+        console.log('got a message',  JSON.parse(message.data).message)
         const game = JSON.parse(message.data).game;
         setGame(game);
       });

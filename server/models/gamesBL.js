@@ -109,14 +109,14 @@ const createGame =  async (newGame) => {
    
 }
 
-const JoinGame =  async (JoinName , Game , MongoId) => {
+const JoinGame =  async (JoinPlayer , Game , MongoId) => {
     let Users = Game.Users;
     
-    Users.push(JoinName)
+    Users.push(JoinPlayer)
 
     const gameToAdd = new gameSchema({
         GameId : Game.GameId ,
-        Users : Game.Users ,
+        Users : Users ,
         Step : Game.Step ,
         Score : Game.Score ,
         Rating : Game.Rating ,
@@ -125,18 +125,17 @@ const JoinGame =  async (JoinName , Game , MongoId) => {
         EndTime : Game.EndTime
     })
 
-    // console.log(gameToAdd.Users)
-    console.log(webSockets.size)
+    console.log(gameToAdd.Step)
+    console.log(gameToAdd.Users)
+
 
     await gameSchema.findByIdAndUpdate(MongoId , gameToAdd)
     gameToAdd.Users.forEach((user) => {
         console.log("want to send to user: " + user.UserId)
-        // console.log(webSockets)
         let socket = webSockets[user.UserId.toString()]
-        // console.log("id: " + socket)
         if(socket) {
         console.log("Game is on!! " + user.UserId)
-        socket.send(JSON.stringify({game:gameToAdd}))
+        socket.send(JSON.stringify({game:gameToAdd , message:"from the server : Game is on!!"}))
         }
         else {
             console.log('socket not found')

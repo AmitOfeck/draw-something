@@ -95,7 +95,7 @@ router.route('/CreateGame').post(async (req, resp) => {
 //Join Game - new
 router.route('/JoinGame').put(async (req, resp) => {
     const GameId = req.body.GameId; // {GameId : GameId , UserName : name}
-    const JoinName = {
+    const JoinPlayer = {
         UserName : req.body.UserName , 
         UserId : gen()
     }
@@ -103,7 +103,7 @@ router.route('/JoinGame').put(async (req, resp) => {
     const MongoId = Game[0]._id
     Game[0].StartTime = new Date()
     Game[0].EndTime = undefined
-    const answer = await gamesBL.JoinGame(JoinName ,Game[0] , MongoId);
+    const answer = await gamesBL.JoinGame(JoinPlayer ,Game[0] , MongoId);
     return resp.json(answer);
 })
 
