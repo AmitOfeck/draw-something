@@ -7,7 +7,7 @@ import '../App.css';
 import Bar from './Bar';
 
 
-function Play() {
+function Play(props) {
     const params = useParams();
     const navigate = useNavigate();
     let interval;

@@ -39,8 +39,7 @@ function Guess(props) {
         else if(JSON.parse(message.data).type === "PaintingState"){
             const PaintingStateReceived = JSON.parse(message.data).PaintingState;
             setSnapshot({...snapshot , PaintingState : PaintingStateReceived});
-        }
-          
+        }  
       });
 
     // useEffect(async () => {
